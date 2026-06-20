@@ -1,0 +1,12 @@
+{
+  "feed": "Grey PC content feed",
+  "updated": "2026-06-20",
+  "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
+  "articles": [
+    {
+      "id": "2026-06-20-rtx-5070-vs-5070-ti",
+      "url": "2026-06-20-rtx-5070-vs-5070-ti.json",
+      "publish_date": "2026-06-20"
+    }
+  ]
+}
