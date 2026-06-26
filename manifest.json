@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-06-23",
+  "updated": "2026-06-26",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -17,6 +17,11 @@
       "id": "2026-06-22-amd-ryzen-5-9600-vs-7600-the-2026-mid-r",
       "url": "2026-06-22-amd-ryzen-5-9600-vs-7600-the-2026-mid-r.json",
       "publish_date": "2026-06-22"
+    },
+    {
+      "id": "2026-06-23-the-best-1080p-gaming-pc-build-for-bahrain-in-2026",
+      "url": "2026-06-23-the-best-1080p-gaming-pc-build-for-bahrain-in-2026.json",
+      "publish_date": "2026-06-23"
     }
   ]
 }
