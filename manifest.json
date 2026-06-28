@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-06-27",
+  "updated": "2026-06-28",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -32,6 +32,11 @@
       "id": "2026-06-25-best-aio-cooler-for-ryzen-7-9800x3d-in-2026",
       "url": "2026-06-25-best-aio-cooler-for-ryzen-7-9800x3d-in-2026.json",
       "publish_date": "2026-06-25"
+    },
+    {
+      "id": "2026-06-26-4k-gaming-pc-build-2026-the-rtx-5080-5090-blueprint",
+      "url": "2026-06-26-4k-gaming-pc-build-2026-the-rtx-5080-5090-blueprint.json",
+      "publish_date": "2026-06-26"
     }
   ]
 }
