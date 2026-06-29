@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-06-28",
+  "updated": "2026-06-29T02:05:40.854155",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -37,6 +37,11 @@
       "id": "2026-06-26-4k-gaming-pc-build-2026-the-rtx-5080-5090-blueprint",
       "url": "2026-06-26-4k-gaming-pc-build-2026-the-rtx-5080-5090-blueprint.json",
       "publish_date": "2026-06-26"
+    },
+    {
+      "id": "2026-06-27-how-much-does-a-custom-gaming-pc-cost-in-bahrain",
+      "url": "2026-06-27-how-much-does-a-custom-gaming-pc-cost-in-bahrain.json",
+      "publish_date": "2026-06-27"
     }
   ]
 }
