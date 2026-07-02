@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-01",
+  "updated": "2026-07-02",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -52,6 +52,11 @@
       "id": "2026-06-29-ryzen-7-9800x3d-best-gaming-cpu-2026",
       "url": "2026-06-29-ryzen-7-9800x3d-best-gaming-cpu-2026.json",
       "publish_date": "2026-06-29"
+    },
+    {
+      "id": "2026-06-30-best-pc-for-video-editing-4k-premiere-in-2026",
+      "url": "2026-06-30-best-pc-for-video-editing-4k-premiere-in-2026.json",
+      "publish_date": "2026-06-30"
     }
   ]
 }
