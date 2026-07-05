@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-04",
+  "updated": "2026-07-05",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -67,6 +67,11 @@
       "id": "2026-07-02-best-monitor-for-competitive-gaming-in-bahrain-2026",
       "url": "2026-07-02-best-monitor-for-competitive-gaming-in-bahrain-2026.json",
       "publish_date": "2026-07-02"
+    },
+    {
+      "id": "2026-07-03-nvme-ssd-buying-guide-gen4-vs-gen5-in-2026",
+      "url": "2026-07-03-nvme-ssd-buying-guide-gen4-vs-gen5-in-2026.json",
+      "publish_date": "2026-07-03"
     }
   ]
 }
