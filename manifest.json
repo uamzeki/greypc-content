@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-07T05:04:51.356295",
+  "updated": "2026-07-08T05:05:54.743706",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -87,6 +87,11 @@
       "id": "2026-07-05-best-white-pc-build-2026-clean-aesthetic-setups",
       "url": "2026-07-05-best-white-pc-build-2026-clean-aesthetic-setups.json",
       "publish_date": "2026-07-05"
+    },
+    {
+      "id": "2026-07-06-mini-itx-vs-mid-tower-choosing-your-2026-case",
+      "url": "2026-07-06-mini-itx-vs-mid-tower-choosing-your-2026-case.json",
+      "publish_date": "2026-07-06"
     }
   ]
 }
