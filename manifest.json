@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-09",
+  "updated": "2026-07-10T05:06:08.324739",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -97,6 +97,11 @@
       "id": "2026-07-07-best-mechanical-keyboard-for-gaming-in-bahrain-2026",
       "url": "2026-07-07-best-mechanical-keyboard-for-gaming-in-bahrain-2026.json",
       "publish_date": "2026-07-07"
+    },
+    {
+      "id": "2026-07-08-power-supply-guide-what-wattage-for-an-rtx-5080",
+      "url": "2026-07-08-power-supply-guide-what-wattage-for-an-rtx-5080.json",
+      "publish_date": "2026-07-08"
     }
   ]
 }
