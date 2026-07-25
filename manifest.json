@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-19",
+  "updated": "2026-07-25",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -122,6 +122,11 @@
       "id": "2026-07-12-the-ultimate-sim-racing-pc-cockpit-setup-2026",
       "url": "2026-07-12-the-ultimate-sim-racing-pc-cockpit-setup-2026.json",
       "publish_date": "2026-07-12"
+    },
+    {
+      "id": "2026-07-13-vr-ready-pc-build-for-pimax-crystal-in-2026",
+      "url": "2026-07-13-vr-ready-pc-build-for-pimax-crystal-in-2026.json",
+      "publish_date": "2026-07-13"
     }
   ]
 }
