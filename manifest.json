@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-27",
+  "updated": "2026-07-28",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -137,6 +137,11 @@
       "id": "2026-07-15-how-to-build-a-quiet-dust-resistant-pc-for-the-gulf",
       "url": "2026-07-15-how-to-build-a-quiet-dust-resistant-pc-for-the-gulf.json",
       "publish_date": "2026-07-15"
+    },
+    {
+      "id": "2026-07-16-rtx-5060-vs-5060-ti-best-1080p-1440p-value-in-2026",
+      "url": "2026-07-16-rtx-5060-vs-5060-ti-best-1080p-1440p-value-in-2026.json",
+      "publish_date": "2026-07-16"
     }
   ]
 }
