@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-28",
+  "updated": "2026-07-29",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -142,6 +142,11 @@
       "id": "2026-07-16-rtx-5060-vs-5060-ti-best-1080p-1440p-value-in-2026",
       "url": "2026-07-16-rtx-5060-vs-5060-ti-best-1080p-1440p-value-in-2026.json",
       "publish_date": "2026-07-16"
+    },
+    {
+      "id": "2026-07-17-best-motherboard-for-am5-ryzen-in-2026-b850-vs-x870",
+      "url": "2026-07-17-best-motherboard-for-am5-ryzen-in-2026-b850-vs-x870.json",
+      "publish_date": "2026-07-17"
     }
   ]
 }
