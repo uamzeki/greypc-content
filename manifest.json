@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-07-29",
+  "updated": "2026-07-30",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -147,6 +147,11 @@
       "id": "2026-07-17-best-motherboard-for-am5-ryzen-in-2026-b850-vs-x870",
       "url": "2026-07-17-best-motherboard-for-am5-ryzen-in-2026-b850-vs-x870.json",
       "publish_date": "2026-07-17"
+    },
+    {
+      "id": "2026-07-18-student-pc-build-2026-study-gaming-on-a-budget",
+      "url": "2026-07-18-student-pc-build-2026-study-gaming-on-a-budget.json",
+      "publish_date": "2026-07-18"
     }
   ]
 }
