@@ -150,3 +150,45 @@ Never claim a product is "in stock" and never quote a specific price - link to t
 ---
 
 *Last updated: 2026-08-08*
+
+---
+
+## 7. Automation contract (how the scheduled run must operate)
+
+The daily run is unattended. It must be fully programmatic - **no screenshots, no coordinate
+clicking, no reliance on where a button happens to sit on screen.**
+
+**Publishing transport.** Commits are made through the owner's authenticated GitHub session in
+Chrome, driven entirely through the DOM and fetch:
+
+1. Navigate to https://github.com/uamzeki/greypc-content/upload/main (or /upload/main/articles,
+   /upload/main/images for the subfolders).
+2. Build each file in page context as a File object.
+3. Stage them: assign a DataTransfer FileList to the #upload-manifest-files-input element and
+   dispatch a bubbling change event.
+4. Set the commit summary with the native HTMLInputElement value setter, then dispatch input
+   and change events (the field is React-controlled - assigning .value alone will not register).
+5. Locate the enabled button whose text is exactly "Commit changes" and call .click() on it.
+6. Verify against https://api.github.com/repos/uamzeki/greypc-content/commits and against
+   raw.githubusercontent.com pinned to the new commit SHA (the /main/ raw URL is CDN-cached and
+   will serve stale content for several minutes - always verify by SHA, never by branch).
+
+Read current manifest.json and calendar.json with fetch inside the page rather than re-sending
+their contents through the model. Mutate them in page context and upload the result.
+
+**Never request, accept, or enter a personal access token, password, or any other credential.**
+The browser session is the only authorised write path.
+
+**Preconditions.** Chrome must be running, the Claude extension connected, and the GitHub account
+signed in. If any of these fail, do not retry blindly - write the finished article, image,
+manifest and calendar to the outputs folder and report clearly that publishing was blocked and
+why, so the owner can commit manually.
+
+**Backlog policy.** If pending entries exist for dates before today, publish today's entry first,
+then work forward through the oldest pending entries, up to 3 articles per run, until the calendar
+is current. Skip any backlog entry whose topic has gone stale (dated seasonal hooks, superseded
+hardware) and mark it in the calendar with status "skipped" rather than deleting it.
+
+**Verification step.** Every run ends by confirming, via the GitHub API, that all four artefacts
+for each published article exist at the new commit: the article JSON, the image, the manifest
+entry, and the calendar status.
