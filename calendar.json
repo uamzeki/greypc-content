@@ -208,49 +208,49 @@
       "title": "Year-End PC Deals in Bahrain: What to Buy",
       "focus_keyword": "pc deals bahrain",
       "category": "Blog",
-      "status": "pending"
+      "status": "skipped"
     },
     {
       "date": "2026-07-20",
       "title": "Best Gaming PC Under 600 BHD in Bahrain (2026 Build)",
       "focus_keyword": "gaming pc under 600 bhd",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-21",
       "title": "1440p Gaming PC Build for Bahrain in 2026",
       "focus_keyword": "1440p gaming pc build",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-22",
       "title": "Best Streaming PC Build for Twitch & YouTube in 2026",
       "focus_keyword": "streaming pc build 2026",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-23",
       "title": "Budget Gaming PC Under 250 BHD in Bahrain 2026",
       "focus_keyword": "gaming pc under 250 bhd",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-24",
       "title": "High-End Gaming PC Build 2026: The No-Compromise Setup",
       "focus_keyword": "high end gaming pc build 2026",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-25",
       "title": "Best PC for Blender & 3D Rendering in 2026",
       "focus_keyword": "3d rendering pc build",
       "category": "Blog",
-      "status": "pending"
+      "status": "published"
     },
     {
       "date": "2026-07-26",
@@ -508,6 +508,13 @@
       "date": "2026-08-31",
       "title": "September PC Buying Guide: What to Buy and What to Wait For",
       "focus_keyword": "pc buying guide 2026",
+      "category": "Blog",
+      "status": "pending"
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Best Esports & LAN Cafe PC Setup in Bahrain 2026",
+      "focus_keyword": "esports pc bahrain",
       "category": "Blog",
       "status": "pending"
     }

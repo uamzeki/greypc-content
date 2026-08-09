@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-08",
+  "updated": "2026-08-09",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -157,6 +157,36 @@
       "id": "2026-08-08-best-gaming-mouse-for-bahrain-gamers-in-2026",
       "url": "2026-08-08-best-gaming-mouse-for-bahrain-gamers-in-2026.json",
       "publish_date": "2026-08-08"
+    },
+    {
+      "id": "2026-07-20-best-gaming-pc-under-600-bhd-in-bahrain-2026-build",
+      "url": "2026-07-20-best-gaming-pc-under-600-bhd-in-bahrain-2026-build.json",
+      "publish_date": "2026-07-20"
+    },
+    {
+      "id": "2026-07-21-1440p-gaming-pc-build-for-bahrain-in-2026",
+      "url": "2026-07-21-1440p-gaming-pc-build-for-bahrain-in-2026.json",
+      "publish_date": "2026-07-21"
+    },
+    {
+      "id": "2026-07-22-best-streaming-pc-build-for-twitch-youtube-in-2026",
+      "url": "2026-07-22-best-streaming-pc-build-for-twitch-youtube-in-2026.json",
+      "publish_date": "2026-07-22"
+    },
+    {
+      "id": "2026-07-23-budget-gaming-pc-under-250-bhd-in-bahrain-2026",
+      "url": "2026-07-23-budget-gaming-pc-under-250-bhd-in-bahrain-2026.json",
+      "publish_date": "2026-07-23"
+    },
+    {
+      "id": "2026-07-24-high-end-gaming-pc-build-2026-the-no-compromise-setup",
+      "url": "2026-07-24-high-end-gaming-pc-build-2026-the-no-compromise-setup.json",
+      "publish_date": "2026-07-24"
+    },
+    {
+      "id": "2026-07-25-best-pc-for-blender-3d-rendering-in-2026",
+      "url": "2026-07-25-best-pc-for-blender-3d-rendering-in-2026.json",
+      "publish_date": "2026-07-25"
     }
   ]
 }
