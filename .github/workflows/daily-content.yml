@@ -1,0 +1,81 @@
+name: Daily content run
+
+on:
+  schedule:
+    # 05:00 UTC daily - well ahead of the site's ~15:43 UTC publish window.
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: content-run
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install --quiet anthropic pillow
+
+      - name: Install Poppins (matches tools/make_header.py)
+        run: |
+          sudo mkdir -p /usr/share/fonts/truetype/google-fonts
+          base=https://raw.githubusercontent.com/google/fonts/main/ofl/poppins
+          for f in Poppins-Bold Poppins-SemiBold Poppins-Light; do
+            sudo curl -sSfL -o "/usr/share/fonts/truetype/google-fonts/$f.ttf" "$base/$f.ttf"
+          done
+          fc-cache -f
+
+      - name: Write and queue articles
+        id: content
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CONTENT_MODEL: ${{ vars.CONTENT_MODEL || 'claude-sonnet-5' }}
+          SUMMARY_FILE: ${{ github.workspace }}/run-summary.md
+        run: |
+          export RUN_DATE=$(date -u +%F)
+          python tools/autopublish.py
+
+      - name: Commit and push
+        if: always()
+        run: |
+          if [ -z "$(git status --porcelain articles images manifest.json calendar.json)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name  "greypc-content-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add articles images manifest.json calendar.json
+          git commit -m "Content run $(date -u +%F)"
+          git push
+
+      - name: Job summary
+        if: always()
+        run: cat run-summary.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Open an issue if the run failed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "The daily content run failed on $(date -u +%F)."
+            echo
+            cat run-summary.md 2>/dev/null || echo "No summary was produced."
+            echo
+            echo "[Full log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          } > issue.md
+          gh issue create \
+            --title "Content run failed - $(date -u +%F)" \
+            --body-file issue.md \
+            --label automation || true
