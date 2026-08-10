@@ -2,7 +2,7 @@
 """Grey PC autonomous content run.
 
 Keeps the manifest queue stocked. Reads calendar.json, writes articles to the
-METHODOLOGY.md spec via the Anthropic API, generates branded headers, and
+METHODOLOGY.md spec via the Claude Code CLI, generates branded headers, and
 updates manifest.json + calendar.json.
 
 Writes files only. Committing is the workflow's job.
@@ -218,13 +218,22 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
             "errors. Fix every one of them:\n- " + "\n- ".join(feedback)
         )
 
-    resp = client.messages.create(
-        model=MODEL,
-        max_tokens=16000,
-        system=system,
-        messages=[{"role": "user", "content": user}],
+    proc = subprocess.run(
+        ["claude", "-p",
+         "--model", MODEL,
+         "--max-turns", "1",
+         "--allowed-tools", "",
+         "--append-system-prompt", system],
+        input=user,
+        capture_output=True,
+        text=True,
+        timeout=900,
     )
-    text = "".join(b.text for b in resp.content if b.type == "text").strip()
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"claude CLI exited {proc.returncode}: {proc.stderr.strip()[:500]}"
+        )
+    text = proc.stdout.strip()
     text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
     return json.loads(text)
 
@@ -243,14 +252,13 @@ def make_header(title, article_id):
 # --------------------------------------------------------------------------
 
 def main():
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        log("FAILURE: ANTHROPIC_API_KEY is not set. Add it under repository "
-            "Settings > Secrets and variables > Actions.")
+    if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN"):
+        log("FAILURE: CLAUDE_CODE_OAUTH_TOKEN is not set. Generate one with "
+            "'claude setup-token' and add it under repository Settings > "
+            "Secrets and variables > Actions.")
         return 1
 
-    from anthropic import Anthropic
-
-    client = Anthropic()
+    client = None  # generation shells out to the Claude Code CLI
     methodology = (ROOT / "METHODOLOGY.md").read_text(encoding="utf-8")
     manifest = dedupe_manifest(read_json("manifest.json"))
     calendar = read_json("calendar.json")

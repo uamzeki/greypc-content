@@ -25,7 +25,9 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install --quiet anthropic pillow
+        run: |
+          pip install --quiet pillow
+          npm install -g @anthropic-ai/claude-code
 
       - name: Install Poppins (matches tools/make_header.py)
         run: |
@@ -39,7 +41,7 @@ jobs:
       - name: Write and queue articles
         id: content
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           CONTENT_MODEL: ${{ vars.CONTENT_MODEL || 'claude-sonnet-5' }}
           SUMMARY_FILE: ${{ github.workspace }}/run-summary.md
         run: |
