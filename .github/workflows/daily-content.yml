@@ -38,6 +38,31 @@ jobs:
           done
           fc-cache -f
 
+      - name: Smoke-test the Claude CLI
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CONTENT_MODEL: ${{ vars.CONTENT_MODEL || 'claude-sonnet-5' }}
+        run: |
+          echo "--- version ---"
+          claude --version || echo "VERSION CHECK FAILED (exit $?)"
+          echo "--- token present? ---"
+          if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "CLAUDE_CODE_OAUTH_TOKEN is set (${#CLAUDE_CODE_OAUTH_TOKEN} chars)"
+          else
+            echo "CLAUDE_CODE_OAUTH_TOKEN IS EMPTY - the secret is missing or misnamed"
+          fi
+          set +e
+          echo "--- A: bare claude -p ---"
+          out=$(echo "Reply with exactly: SMOKE_OK" | claude -p 2>/tmp/a.err)
+          echo "exit=$? stdout=$out stderr=$(cat /tmp/a.err)"
+          echo "--- B: with --max-turns 1 ---"
+          out=$(echo "Reply with exactly: SMOKE_OK" | claude -p --max-turns 1 2>/tmp/b.err)
+          echo "exit=$? stdout=$out stderr=$(cat /tmp/b.err)"
+          echo "--- C: with --model $CONTENT_MODEL ---"
+          out=$(echo "Reply with exactly: SMOKE_OK" | claude -p --model "$CONTENT_MODEL" 2>/tmp/c.err)
+          echo "exit=$? stdout=$out stderr=$(cat /tmp/c.err)"
+          set -e
+
       - name: Write and queue articles
         id: content
         env:

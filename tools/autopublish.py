@@ -221,8 +221,6 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
     proc = subprocess.run(
         ["claude", "-p",
          "--model", MODEL,
-         "--max-turns", "1",
-         "--allowed-tools", "",
          "--append-system-prompt", system],
         input=user,
         capture_output=True,
@@ -231,7 +229,9 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
     )
     if proc.returncode != 0:
         raise RuntimeError(
-            f"claude CLI exited {proc.returncode}: {proc.stderr.strip()[:500]}"
+            f"claude CLI exited {proc.returncode} | "
+            f"stderr={proc.stderr.strip()[:600]!r} | "
+            f"stdout={proc.stdout.strip()[:600]!r}"
         )
     text = proc.stdout.strip()
     text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
