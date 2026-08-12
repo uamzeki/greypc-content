@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-11",
+  "updated": "2026-08-12",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -192,6 +192,11 @@
       "id": "2026-07-27-best-home-office-pc-in-bahrain-2026",
       "url": "2026-07-27-best-home-office-pc-in-bahrain-2026.json",
       "publish_date": "2026-07-27"
+    },
+    {
+      "id": "2026-07-28-small-form-factor-gaming-pc-build-2026-sff-guide",
+      "url": "2026-07-28-small-form-factor-gaming-pc-build-2026-sff-guide.json",
+      "publish_date": "2026-07-28"
     }
   ]
 }
