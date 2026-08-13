@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-12",
+  "updated": "2026-08-13",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -197,6 +197,11 @@
       "id": "2026-07-28-small-form-factor-gaming-pc-build-2026-sff-guide",
       "url": "2026-07-28-small-form-factor-gaming-pc-build-2026-sff-guide.json",
       "publish_date": "2026-07-28"
+    },
+    {
+      "id": "2026-07-29-best-emulation-pc-build-2026-switch-ps3-and-beyond",
+      "url": "2026-07-29-best-emulation-pc-build-2026-switch-ps3-and-beyond.json",
+      "publish_date": "2026-07-29"
     }
   ]
 }
