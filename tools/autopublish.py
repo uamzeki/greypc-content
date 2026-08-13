@@ -16,6 +16,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -44,6 +45,25 @@ APPROVED_LINKS = [
     "https://greypc.net/contact-us/",
     "https://greypc.net/about-us/",
 ]
+
+# Signs that the CLI cannot produce anything at all right now. Retrying the
+# next calendar entry after one of these is pointless - it will fail the same
+# way, 900 seconds at a time.
+FATAL_SIGNS = (
+    "session limit",
+    "usage limit",
+    "rate limit",
+    "quota",
+    "unauthorized",
+    "authentication",
+    "invalid api key",
+    "oauth token",
+)
+
+
+class Fatal(RuntimeError):
+    """Generation is blocked for the whole run, not just this article."""
+
 
 notes = []
 
@@ -90,28 +110,60 @@ def dedupe_manifest(manifest):
     return manifest
 
 
-def live_dates():
-    """Dates already published on the site.
+def fetch_sitemap():
+    """Fetch the sitemap, retrying briefly.
 
-    The sitemap carries the uploaded header image for each post, and WordPress
-    keeps our YYYY-MM-DD prefix even when it truncates the rest of the filename,
-    so the date prefix is the only reliable join key.
+    The runner intermittently cannot reach greypc.net on the first attempt
+    (seen in the wild as 'Errno 101 Network is unreachable').
     """
-    req = urllib.request.Request(SITEMAP, headers={"User-Agent": "greypc-autopublish"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        xml = r.read().decode("utf-8", "replace")
-    return set(re.findall(r"/(\d{4}-\d{2}-\d{2})-[^/\"<]*\.(?:png|webp|jpg|jpeg)", xml))
+    last = None
+    for attempt in (1, 2, 3):
+        try:
+            req = urllib.request.Request(
+                SITEMAP, headers={"User-Agent": "greypc-autopublish"}
+            )
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return r.read().decode("utf-8", "replace")
+        except Exception as ex:  # noqa: BLE001
+            last = ex
+            if attempt < 3:
+                time.sleep(5 * attempt)
+    raise last
+
+
+def live_keys():
+    """Two independent 'this article is already live' signals, unioned.
+
+    * the post slug from <loc> - present for every post, always
+    * the YYYY-MM-DD prefix of the header image, which WordPress keeps even
+      when it truncates the rest of the filename
+
+    The image signal alone has a blind spot: the sitemap is regenerated as soon
+    as a post goes live, but the header image can take a while to attach, so a
+    freshly published post can appear with no <image:loc> at all. Counting that
+    post as still-queued inflates the measured depth and quietly starves the
+    queue. The slug is always there, so the union is reliable.
+    """
+    xml = fetch_sitemap()
+    slugs = set(re.findall(r"greypc\.net/([a-z0-9][a-z0-9-]*)/", xml))
+    dates = set(re.findall(r"/(\d{4}-\d{2}-\d{2})-[^/\"<]*\.(?:png|webp|jpg|jpeg)", xml))
+    return slugs, dates
 
 
 def measure_queue(manifest):
     """Returns (unpublished_count, sitemap_ok)."""
     try:
-        live = live_dates()
+        slugs, dates = live_keys()
     except Exception as e:  # noqa: BLE001
-        log(f"WARNING: could not read the sitemap ({e}). Falling back to a "
-            f"single top-up article this run.")
+        log(f"WARNING: could not read the sitemap after 3 tries ({e}). Topping "
+            f"up by a single article and leaving the real check for tomorrow.")
         return TARGET_QUEUE - 1, False
-    queued = [a for a in manifest["articles"] if a["publish_date"] not in live]
+    queued = []
+    for a in manifest["articles"]:
+        slug = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", a["id"])
+        if slug in slugs or a["publish_date"] in dates:
+            continue
+        queued.append(a)
     return len(queued), True
 
 
@@ -228,11 +280,15 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
         timeout=900,
     )
     if proc.returncode != 0:
-        raise RuntimeError(
+        msg = (
             f"claude CLI exited {proc.returncode} | "
             f"stderr={proc.stderr.strip()[:600]!r} | "
             f"stdout={proc.stdout.strip()[:600]!r}"
         )
+        blob = (proc.stdout + proc.stderr).lower()
+        if any(sign in blob for sign in FATAL_SIGNS):
+            raise Fatal(msg)
+        raise RuntimeError(msg)
     text = proc.stdout.strip()
     text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
     return json.loads(text)
@@ -280,14 +336,20 @@ def main():
     pending.sort(key=lambda e: e["date"])
 
     written, failures = [], []
+    attempted, fatal = 0, None
     for entry in pending:
-        if len(written) >= need:
+        # Bound the run by attempts, not just successes. Previously the loop
+        # only stopped once `need` articles had been written, so a run where
+        # generation was failing would grind through every pending entry -
+        # 38 of them on 2026-08-10, two attempts each, all doomed.
+        if len(written) >= need or attempted >= need:
             break
         article_id = f"{entry['date']}-{slugify(entry['title'])}"[:120]
         if (ROOT / "articles" / f"{article_id}.json").exists():
             log(f"SKIP {entry['date']}: article file already exists.")
             continue
 
+        attempted += 1
         art, errors = None, None
         for attempt in (1, 2):
             try:
@@ -296,6 +358,10 @@ def main():
                     used - {entry["focus_keyword"]},
                     feedback=errors,
                 )
+            except Fatal as ex:
+                fatal = str(ex)
+                errors = [f"fatal: {ex}"]
+                break
             except Exception as ex:  # noqa: BLE001
                 errors = [f"generation error: {ex}"]
                 continue
@@ -320,6 +386,9 @@ def main():
                 break
             log(f"attempt {attempt} for {article_id} failed validation: {errors}")
 
+        if fatal:
+            log(f"ABORTING the run early - generation is blocked: {fatal}")
+            break
         if art == "stale":
             continue
         if art is None:
@@ -346,13 +415,17 @@ def main():
 
     write_summary(depth, depth + len(written), written, calendar)
 
+    if fatal:
+        log("FAILURE: generation is blocked, so the run stopped after the first "
+            "article rather than burning the whole calendar. " + fatal)
+        return 1
     if failures:
         log(f"FAILURE: {len(failures)} article(s) could not be written to spec.")
         return 1
     if not sitemap_ok:
-        log("FAILURE: the sitemap could not be read, so queue depth is a guess. "
-            "Check that https://greypc.net/post-sitemap.xml still resolves.")
-        return 1
+        log("NOTE: queue depth was estimated this run because the sitemap was "
+            "unreachable after 3 tries. Not failing the run for that alone - "
+            "the daily health check flags it if it keeps happening.")
     return 0
 
 
