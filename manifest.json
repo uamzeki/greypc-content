@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-15",
+  "updated": "2026-08-17",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -212,6 +212,11 @@
       "id": "2026-07-31-rtx-5080-vs-rx-9070-xt-1440p-and-4k-value-in-2026",
       "url": "2026-07-31-rtx-5080-vs-rx-9070-xt-1440p-and-4k-value-in-2026.json",
       "publish_date": "2026-07-31"
+    },
+    {
+      "id": "2026-08-01-intel-core-ultra-vs-amd-ryzen-for-gaming-in-2026",
+      "url": "2026-08-01-intel-core-ultra-vs-amd-ryzen-for-gaming-in-2026.json",
+      "publish_date": "2026-08-01"
     }
   ]
 }
