@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-19",
+  "updated": "2026-08-20",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -227,6 +227,11 @@
       "id": "2026-08-03-air-cooler-vs-aio-what-s-best-for-bahrain-s-heat-in-2026",
       "url": "2026-08-03-air-cooler-vs-aio-what-s-best-for-bahrain-s-heat-in-2026.json",
       "publish_date": "2026-08-03"
+    },
+    {
+      "id": "2026-08-04-rx-9070-gre-vs-rtx-5070-1440p-showdown-2026",
+      "url": "2026-08-04-rx-9070-gre-vs-rtx-5070-1440p-showdown-2026.json",
+      "publish_date": "2026-08-04"
     }
   ]
 }
