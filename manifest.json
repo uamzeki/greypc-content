@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-21",
+  "updated": "2026-08-22",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -237,6 +237,11 @@
       "id": "2026-08-05-27-inch-vs-32-inch-gaming-monitor-which-to-buy-in-2026",
       "url": "2026-08-05-27-inch-vs-32-inch-gaming-monitor-which-to-buy-in-2026.json",
       "publish_date": "2026-08-05"
+    },
+    {
+      "id": "2026-08-06-best-gaming-chair-in-bahrain-2026-buyer-s-guide",
+      "url": "2026-08-06-best-gaming-chair-in-bahrain-2026-buyer-s-guide.json",
+      "publish_date": "2026-08-06"
     }
   ]
 }
