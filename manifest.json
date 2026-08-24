@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-22",
+  "updated": "2026-08-24",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -242,6 +242,16 @@
       "id": "2026-08-06-best-gaming-chair-in-bahrain-2026-buyer-s-guide",
       "url": "2026-08-06-best-gaming-chair-in-bahrain-2026-buyer-s-guide.json",
       "publish_date": "2026-08-06"
+    },
+    {
+      "id": "2026-08-07-best-pc-case-for-airflow-in-2026-hot-climate-picks",
+      "url": "2026-08-07-best-pc-case-for-airflow-in-2026-hot-climate-picks.json",
+      "publish_date": "2026-08-07"
+    },
+    {
+      "id": "2026-08-09-best-4k-monitor-for-gaming-and-work-in-bahrain-2026",
+      "url": "2026-08-09-best-4k-monitor-for-gaming-and-work-in-bahrain-2026.json",
+      "publish_date": "2026-08-09"
     }
   ]
 }
