@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-24",
+  "updated": "2026-08-25",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -252,6 +252,11 @@
       "id": "2026-08-09-best-4k-monitor-for-gaming-and-work-in-bahrain-2026",
       "url": "2026-08-09-best-4k-monitor-for-gaming-and-work-in-bahrain-2026.json",
       "publish_date": "2026-08-09"
+    },
+    {
+      "id": "2026-08-10-best-wi-fi-7-router-for-low-latency-gaming-in-2026",
+      "url": "2026-08-10-best-wi-fi-7-router-for-low-latency-gaming-in-2026.json",
+      "publish_date": "2026-08-10"
     }
   ]
 }
