@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-25",
+  "updated": "2026-08-27",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -257,6 +257,16 @@
       "id": "2026-08-10-best-wi-fi-7-router-for-low-latency-gaming-in-2026",
       "url": "2026-08-10-best-wi-fi-7-router-for-low-latency-gaming-in-2026.json",
       "publish_date": "2026-08-10"
+    },
+    {
+      "id": "2026-08-11-best-ups-for-your-gaming-pc-in-bahrain-2026",
+      "url": "2026-08-11-best-ups-for-your-gaming-pc-in-bahrain-2026.json",
+      "publish_date": "2026-08-11"
+    },
+    {
+      "id": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026",
+      "url": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026.json",
+      "publish_date": "2026-08-13"
     }
   ]
 }
