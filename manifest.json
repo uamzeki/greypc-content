@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-27",
+  "updated": "2026-08-28",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -267,6 +267,11 @@
       "id": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026",
       "url": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026.json",
       "publish_date": "2026-08-13"
+    },
+    {
+      "id": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it",
+      "url": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it.json",
+      "publish_date": "2026-08-12"
     }
   ]
 }
