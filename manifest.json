@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-28",
+  "updated": "2026-08-29",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -272,6 +272,11 @@
       "id": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it",
       "url": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it.json",
       "publish_date": "2026-08-12"
+    },
+    {
+      "id": "2026-08-14-how-to-cable-manage-your-pc-build-2026-guide",
+      "url": "2026-08-14-how-to-cable-manage-your-pc-build-2026-guide.json",
+      "publish_date": "2026-08-14"
     }
   ]
 }
