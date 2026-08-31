@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-08-29",
+  "updated": "2026-08-31",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -277,6 +277,16 @@
       "id": "2026-08-14-how-to-cable-manage-your-pc-build-2026-guide",
       "url": "2026-08-14-how-to-cable-manage-your-pc-build-2026-guide.json",
       "publish_date": "2026-08-14"
+    },
+    {
+      "id": "2026-08-15-how-to-optimize-windows-11-for-gaming-in-2026",
+      "url": "2026-08-15-how-to-optimize-windows-11-for-gaming-in-2026.json",
+      "publish_date": "2026-08-15"
+    },
+    {
+      "id": "2026-08-16-how-to-undervolt-your-rtx-gpu-for-cooler-temps-in-2026",
+      "url": "2026-08-16-how-to-undervolt-your-rtx-gpu-for-cooler-temps-in-2026.json",
+      "publish_date": "2026-08-16"
     }
   ]
 }
