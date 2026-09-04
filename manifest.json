@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-03",
+  "updated": "2026-09-04",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -297,6 +297,16 @@
       "id": "2026-08-18-gaming-laptop-vs-desktop-in-bahrain-2026-honest-comparison",
       "url": "2026-08-18-gaming-laptop-vs-desktop-in-bahrain-2026-honest-comparison.json",
       "publish_date": "2026-08-18"
+    },
+    {
+      "id": "2026-08-19-best-capture-card-for-console-streaming-in-2026",
+      "url": "2026-08-19-best-capture-card-for-console-streaming-in-2026.json",
+      "publish_date": "2026-08-19"
+    },
+    {
+      "id": "2026-08-20-rtx-5070-ti-vs-rtx-5080-is-the-upgrade-worth-it-in-2026",
+      "url": "2026-08-20-rtx-5070-ti-vs-rtx-5080-is-the-upgrade-worth-it-in-2026.json",
+      "publish_date": "2026-08-20"
     }
   ]
 }
