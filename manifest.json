@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-04",
+  "updated": "2026-09-06",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -307,6 +307,11 @@
       "id": "2026-08-20-rtx-5070-ti-vs-rtx-5080-is-the-upgrade-worth-it-in-2026",
       "url": "2026-08-20-rtx-5070-ti-vs-rtx-5080-is-the-upgrade-worth-it-in-2026.json",
       "publish_date": "2026-08-20"
+    },
+    {
+      "id": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed",
+      "url": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed.json",
+      "publish_date": "2026-08-22"
     }
   ]
 }
