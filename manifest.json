@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-06",
+  "updated": "2026-09-08",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -312,6 +312,11 @@
       "id": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed",
       "url": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed.json",
       "publish_date": "2026-08-22"
+    },
+    {
+      "id": "2026-08-23-best-cpu-cooler-for-ryzen-9-in-2026-air-vs-aio",
+      "url": "2026-08-23-best-cpu-cooler-for-ryzen-9-in-2026-air-vs-aio.json",
+      "publish_date": "2026-08-23"
     }
   ]
 }
