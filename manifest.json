@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-08",
+  "updated": "2026-09-09",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -317,6 +317,16 @@
       "id": "2026-08-23-best-cpu-cooler-for-ryzen-9-in-2026-air-vs-aio",
       "url": "2026-08-23-best-cpu-cooler-for-ryzen-9-in-2026-air-vs-aio.json",
       "publish_date": "2026-08-23"
+    },
+    {
+      "id": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026",
+      "url": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026.json",
+      "publish_date": "2026-08-21"
+    },
+    {
+      "id": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026",
+      "url": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026.json",
+      "publish_date": "2026-08-25"
     }
   ]
 }
