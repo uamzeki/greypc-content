@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-09",
+  "updated": "2026-09-10",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -327,6 +327,16 @@
       "id": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026",
       "url": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026.json",
       "publish_date": "2026-08-25"
+    },
+    {
+      "id": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide",
+      "url": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide.json",
+      "publish_date": "2026-08-24"
+    },
+    {
+      "id": "2026-08-26-dual-monitor-setup-guide-for-work-and-gaming-in-2026",
+      "url": "2026-08-26-dual-monitor-setup-guide-for-work-and-gaming-in-2026.json",
+      "publish_date": "2026-08-26"
     }
   ]
 }
