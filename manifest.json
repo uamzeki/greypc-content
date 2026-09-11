@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-10",
+  "updated": "2026-09-11",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -337,6 +337,11 @@
       "id": "2026-08-26-dual-monitor-setup-guide-for-work-and-gaming-in-2026",
       "url": "2026-08-26-dual-monitor-setup-guide-for-work-and-gaming-in-2026.json",
       "publish_date": "2026-08-26"
+    },
+    {
+      "id": "2026-08-27-is-ddr5-worth-it-in-2026-ddr4-vs-ddr5-explained",
+      "url": "2026-08-27-is-ddr5-worth-it-in-2026-ddr4-vs-ddr5-explained.json",
+      "publish_date": "2026-08-27"
     }
   ]
 }
