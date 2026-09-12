@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -342,6 +342,11 @@
       "id": "2026-08-27-is-ddr5-worth-it-in-2026-ddr4-vs-ddr5-explained",
       "url": "2026-08-27-is-ddr5-worth-it-in-2026-ddr4-vs-ddr5-explained.json",
       "publish_date": "2026-08-27"
+    },
+    {
+      "id": "2026-08-28-best-gaming-pc-for-call-of-duty-and-warzone-in-2026",
+      "url": "2026-08-28-best-gaming-pc-for-call-of-duty-and-warzone-in-2026.json",
+      "publish_date": "2026-08-28"
     }
   ]
 }
