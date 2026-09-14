@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-12",
+  "updated": "2026-09-14",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -347,6 +347,16 @@
       "id": "2026-08-28-best-gaming-pc-for-call-of-duty-and-warzone-in-2026",
       "url": "2026-08-28-best-gaming-pc-for-call-of-duty-and-warzone-in-2026.json",
       "publish_date": "2026-08-28"
+    },
+    {
+      "id": "2026-08-29-how-long-should-a-gaming-pc-last-upgrade-cycles-in-2026",
+      "url": "2026-08-29-how-long-should-a-gaming-pc-last-upgrade-cycles-in-2026.json",
+      "publish_date": "2026-08-29"
+    },
+    {
+      "id": "2026-08-30-best-workstation-pc-for-engineers-and-cad-in-bahrain-2026",
+      "url": "2026-08-30-best-workstation-pc-for-engineers-and-cad-in-bahrain-2026.json",
+      "publish_date": "2026-08-30"
     }
   ]
 }
