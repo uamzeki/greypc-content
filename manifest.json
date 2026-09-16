@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -362,6 +362,11 @@
       "id": "2026-08-31-september-pc-buying-guide-what-to-buy-and-what-to-wait-for",
       "url": "2026-08-31-september-pc-buying-guide-what-to-buy-and-what-to-wait-for.json",
       "publish_date": "2026-08-31"
+    },
+    {
+      "id": "2026-09-01-best-esports-and-lan-cafe-pc-setup-in-bahrain-2026",
+      "url": "2026-09-01-best-esports-and-lan-cafe-pc-setup-in-bahrain-2026.json",
+      "publish_date": "2026-09-01"
     }
   ]
 }
