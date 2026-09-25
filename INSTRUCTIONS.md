@@ -1,14 +1,33 @@
 # Grey PC - Performance Instructions
 
-**Read this before planning topics or writing an article.** These rules come from what actually
-ranked on greypc.net. Where they conflict with METHODOLOGY.md, this file wins.
+**Read this before planning topics, writing an article, or running the monthly review.**
+The goal is money: leads and sales for Grey PC. Traffic only counts when it turns into leads.
+Where this file conflicts with METHODOLOGY.md, this file wins.
 
-Source: Google Search Console via Site Kit (wp-admin), 2026-06-20 to 2026-09-23.
-Last refreshed: 2026-09-25. Refresh on the 1st of each month, before planning.
+Sources: Search Console and GA4 via Site Kit (wp-admin), WooCommerce orders, 2026-06-20 to
+2026-09-24. Last refreshed: 2026-09-25. The monthly review (section 7) refreshes it.
 
 ---
 
-## 1. The top 10 articles (by Google clicks)
+## 0. Where the money actually comes from (read first)
+
+- 145 orders / 51,694 BHD since 1 June. **113 of the 145 were entered by staff** (phone,
+  WhatsApp, walk-in), so most sales are offline. **Zero** online orders started on a blog page.
+- The blog's money output is **leads**: contact-form submits and outbound clicks (WhatsApp,
+  phone). Blog pages produced 75 of them in three months.
+- **Local buy-intent pages convert 13x better.** Pages about price, cost, BHD budgets or
+  "in Bahrain": 1,251 sessions -> 32 leads (26 per 1,000). Everything else: 19,113 sessions
+  -> 43 leads (2 per 1,000). Per article, local pages earn 2.4x the leads.
+- Best lead pages: "DDR5 RAM price in Bahrain" (45 sessions, 7 leads), "Best budget graphics
+  card in Bahrain" (19 sessions, 6 leads), "How much does a custom gaming PC cost in Bahrain",
+  "4K video editing PC build guide for Bahrain professionals".
+- Big global pages bring reach, not buyers: the emulation build had 1,039 sessions and 0 leads;
+  RTX 5080 vs RX 9070 XT had 805 sessions and 2.
+
+**So: rank everything by leads first, clicks second.** The click-based analysis below still
+explains how pages get found; section 0 decides what is worth writing.
+
+## 1. The top 10 articles by Google clicks (reach, not money)
 
 | # | Article | Clicks | Impressions | Avg pos | Written by |
 |---|---|---:|---:|---:|---|
@@ -37,9 +56,9 @@ Last refreshed: 2026-09-25. Refresh on the 1st of each month, before planning.
 4. **Length is not the reason.** #3 is 715 words and #5 is 207 words. The 3,000-word
    "ultimate guide" batch produced five of the top ten, but across its 79 URLs the median is
    **4 clicks** and 33 got none - the winners won on topic choice, not format.
-5. **None of them targets "Bahrain".**
+5. **None of them targets "Bahrain" - and almost none of them produces leads** (section 0).
 
-## 3. What the whole pipeline shows (73 articles)
+## 3. What the whole pipeline shows in search (73 articles - reach only; leads are in section 0)
 
 | Keyword type | Articles | Clicks | Median clicks |
 |---|---:|---:|---:|
@@ -70,10 +89,13 @@ Last refreshed: 2026-09-25. Refresh on the 1st of each month, before planning.
 1. **Name something.** Every focus keyword names a specific product, model, game or piece of
    software: "9800X3D", "RTX 5070 Ti", "Fortnite", "SolidWorks", "NVIDIA Control Panel".
    A generic keyword ("best gaming monitor", "prebuilt vs custom pc") needs a strong reason.
-2. **No location modifier unless the query is local by nature.** Do not add "Bahrain", "BHD",
-   "Gulf", "Dubai", "Saudi" etc. to a keyword. Use them only when the searcher's intent is
-   local: price, where to buy, delivery, warranty, repair. Localize inside the article instead.
-3. **Favour these proven shapes:**
+2. **Money first: most of each month should be local buy-intent.** Aim for about 60% of
+   entries that pair a named product with Bahrain buying intent - "RTX 5080 price in Bahrain",
+   "best budget GPU in Bahrain", "gaming PC under 500 BHD", "custom workstation price in
+   Bahrain". These get little search volume but convert 13x better. Do not add "Bahrain" to
+   informational queries ("how to clean PC fans in Bahrain") - that gets neither traffic nor
+   leads. The other ~40% are global named-product topics for reach (rule 3).
+3. **For the reach slots, favour these proven shapes:**
    - Model vs model on current hardware - "RTX 5070 Ti vs RX 9070 XT"
    - Best [part] for [specific CPU/GPU] - "best AIO for 9800X3D"
    - [Game] at [FPS target] PC build - "Fortnite 240 FPS"
@@ -98,9 +120,10 @@ Last refreshed: 2026-09-25. Refresh on the 1st of each month, before planning.
    buy each. No invented benchmarks or prices; describe tiers and trade-offs.
 4. **FAQ questions use the product names**, phrased the way people search:
    "Is the RX 9070 XT better than the RTX 5080 at 1440p?", not "Which GPU is better?"
-5. **Localize inside, not in the keyword.** One short section on buying or building in Bahrain -
-   heat, availability, warranty, Grey PC's build service - then the call to action. That is where
-   the local customer is won.
+5. **Every article sells.** Global articles still get one short section on buying or building
+   in Bahrain - heat, availability, warranty, Grey PC's build service. Price and buy-intent
+   articles lead with the buying answer, link the product category where live prices are shown,
+   and ask for a quote or a WhatsApp message near the top as well as at the end.
 6. **Do not pad.** Hit 1,300 words with substance; the data shows length does not rank a page.
 
 ## 6. Open tests (not rules yet)
@@ -109,3 +132,25 @@ Last refreshed: 2026-09-25. Refresh on the 1st of each month, before planning.
   reach GCC readers with little competition. One data point - worth a small test.
 - **Retitling the top 10.** Rewriting seo_title and meta_description on pages already at
   position 5-8 is the cheapest traffic available. Measure CTR 28 days before and after.
+
+## 7. Monthly review - keep the top 10, retire the worst 10
+
+Runs on the 1st. It judges the cohort published **three months earlier** (on 1 October that is
+June's posts), because new pages take 2-3 months to rank - "RTX 5080 vs RX 9070 XT" went live on
+22 August and is now #2. Judging a month-old page would delete next quarter's winners.
+
+1. **Score every post in the cohort** over the last 90 days:
+   `leads x 100 + add_to_cart x 20 + GSC clicks`, where leads = form_submit + outbound clicks
+   with the post as landing page (GA4 via Site Kit), and clicks come from Search Console.
+2. **Keep the top 10.** Work out what they share (topic shape, intent, local vs global, title,
+   CTA placement) and update sections 0-5 of this file with anything new. Refresh the tables.
+3. **Retire the worst 10**, but never a post with any lead or add-to-cart, or with 20+ Search
+   Console clicks in the last 90 days. If fewer than 10 qualify, retire fewer and say so.
+   To retire: move the post to Trash in WordPress (REST DELETE without force - never empty the
+   trash), remove its entry from manifest.json so the auto-publisher cannot re-sync it, and set
+   its calendar.json status to "retired". The article JSON stays in the repo, so any post can be
+   restored.
+4. **Apply the lessons to the next batch**: the planning step reads this file, so the next
+   calendar extension uses the updated rules. List in the report what was kept, what was
+   retired, and what changed in this file.
+
