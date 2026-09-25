@@ -24,6 +24,13 @@ ROOT = Path(__file__).resolve().parent.parent
 SITEMAP = "https://greypc.net/post-sitemap.xml"
 TARGET_QUEUE = 7
 MAX_PER_RUN = 6
+MAX_INTERNAL_LINKS = 8
+# Days of content left before the site has nothing to publish: articles queued
+# but not yet live, plus calendar entries not yet written. From 2026-09-02 to
+# 09-25 the site published nothing while every run reported success, because
+# an empty calendar looked like "nothing to do". Below this, the run fails and
+# the workflow opens an issue.
+RUNWAY_ALERT_DAYS = 3
 MODEL = os.environ.get("CONTENT_MODEL", "claude-sonnet-5")
 
 APPROVED_LINKS = [
@@ -168,6 +175,55 @@ def measure_queue(manifest):
 
 
 # --------------------------------------------------------------------------
+# internal-link repair
+# --------------------------------------------------------------------------
+
+LINK_RE = re.compile(
+    r'<a\b[^>]*\bhref="(https://greypc\.net[^"]*)"[^>]*>(.*?)</a>', re.I | re.S
+)
+
+
+def cap_internal_links(html, limit=MAX_INTERNAL_LINKS):
+    """Unwrap repeated and surplus internal links, keeping their anchor text.
+
+    Drafts kept landing on 9-10 links (issues #3-#16), usually by linking the
+    same category twice or adding links inside FAQ answers, and every miss
+    burned a full retry. Unwrapping leaves each sentence intact, so this is a
+    repair, not a relaxation: validate() still enforces 5-8.
+
+    Keeps the first link to each URL and the last /contact-us/ link (the
+    closing call to action), then trims from the end of the article down to
+    the limit. Returns (html, number_of_links_removed).
+    """
+    matches = list(LINK_RE.finditer(html))
+    if len(matches) <= 1:
+        return html, 0
+    contact = [i for i, m in enumerate(matches) if "contact-us" in m.group(1)]
+    cta = contact[-1] if contact else None
+    keep, seen = [], set()
+    for i, m in enumerate(matches):
+        url = m.group(1)
+        if "contact-us" in url or url in seen:
+            continue
+        seen.add(url)
+        keep.append(i)
+    keep = keep[: limit - (1 if cta is not None else 0)]
+    if cta is not None:
+        keep.append(cta)
+    keep = set(keep)
+    removed = len(matches) - len(keep)
+    if not removed:
+        return html, 0
+    out, pos = [], 0
+    for i, m in enumerate(matches):
+        out.append(html[pos:m.start()])
+        out.append(m.group(0) if i in keep else m.group(2))
+        pos = m.end()
+    out.append(html[pos:])
+    return "".join(out), removed
+
+
+# --------------------------------------------------------------------------
 # validation - mirrors METHODOLOGY.md section 3 and the publishing checklist
 # --------------------------------------------------------------------------
 
@@ -243,8 +299,12 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
           "- a 'Frequently Asked Questions' H2 with 4-6 H3 questions, each answered "
           "in 40-60 words\n"
           "- a 'The Bottom Line' summary section near the end\n"
-          "- between 5 and 8 internal links, every one taken verbatim from this "
-          "list, with descriptive anchor text:\n" + approved + "\n"
+          "- exactly 6 internal links. The checker rejects fewer than 5 or more "
+          "than 8, and drafts keep failing at 9-10. Link each URL once only, "
+          "put no links inside the FAQ answers, and count your <a> tags before "
+          "you reply. The contact-us call to action is one of the 6. Every URL "
+          "must come verbatim from this list, with descriptive anchor text:\n"
+          + approved + "\n"
           "- close with a call to action linking to https://greypc.net/contact-us/\n"
           "- HTML entities (&ndash; &rsquo; &mdash;) rather than raw unicode "
           "punctuation\n"
@@ -316,6 +376,11 @@ def main():
 
     client = None  # generation shells out to the Claude Code CLI
     methodology = (ROOT / "METHODOLOGY.md").read_text(encoding="utf-8")
+    # Performance-derived rules. Where they conflict with METHODOLOGY.md,
+    # INSTRUCTIONS.md wins - it is built from what actually ranked.
+    instructions = ROOT / "INSTRUCTIONS.md"
+    if instructions.exists():
+        methodology += "\n\n---\n\n" + instructions.read_text(encoding="utf-8")
     manifest = dedupe_manifest(read_json("manifest.json"))
     calendar = read_json("calendar.json")
     dirty = bool(notes)  # dedupe may already have changed the manifest
@@ -328,7 +393,8 @@ def main():
         log("Queue is healthy - no articles needed this run.")
         if dirty:
             write_json("manifest.json", manifest)
-        write_summary(depth, depth, [], calendar)
+        write_summary(depth, depth, [], calendar,
+                      "Queue is full - no articles needed this run.")
         return 0
 
     used = {e["focus_keyword"] for e in calendar["calendar"]}
@@ -380,6 +446,12 @@ def main():
                 "https://raw.githubusercontent.com/uamzeki/greypc-content/main/"
                 f"images/{article_id}.png"
             )
+            candidate["content_html"], trimmed = cap_internal_links(
+                candidate.get("content_html", "")
+            )
+            if trimmed:
+                log(f"trimmed {trimmed} repeated/surplus internal link(s) "
+                    f"from {article_id}")
             errors = validate(candidate, used - {entry["focus_keyword"]})
             if not errors:
                 art = candidate
@@ -413,7 +485,21 @@ def main():
         write_json("manifest.json", manifest)
         write_json("calendar.json", calendar)
 
-    write_summary(depth, depth + len(written), written, calendar)
+    queued = depth + len(written)
+    pending_left = sum(1 for e in calendar["calendar"] if e["status"] == "pending")
+    runway = queued + pending_left
+    log(f"Runway: {runway} day(s) of content ({queued} queued + "
+        f"{pending_left} pending in the calendar).")
+    headline = None
+    if not written and not pending:
+        headline = ("Nothing written - calendar.json has no pending entries. "
+                    "Extend the calendar.")
+    runway_low = runway < RUNWAY_ALERT_DAYS
+    if runway_low:
+        # Logged before write_summary so it lands in the issue body.
+        log(f"FAILURE: only {runway} day(s) of content left. The site stops "
+            f"publishing when this reaches 0. Extend calendar.json.")
+    write_summary(depth, queued, written, calendar, headline)
 
     if fatal:
         log("FAILURE: generation is blocked, so the run stopped after the first "
@@ -426,10 +512,10 @@ def main():
         log("NOTE: queue depth was estimated this run because the sitemap was "
             "unreachable after 3 tries. Not failing the run for that alone - "
             "the daily health check flags it if it keeps happening.")
-    return 0
+    return 1 if runway_low else 0
 
 
-def write_summary(before, after, written, calendar):
+def write_summary(before, after, written, calendar, headline=None):
     pending = len([e for e in calendar["calendar"] if e["status"] == "pending"])
     lines = [
         "## Grey PC content run",
@@ -447,7 +533,7 @@ def write_summary(before, after, written, calendar):
             lines.append(f"| {title} | `{kw}` |")
         lines.append("")
     else:
-        lines.append("No articles needed this run.\n")
+        lines.append((headline or "No articles written this run.") + "\n")
     lines.append("### Log\n")
     lines.extend(f"- {n}" for n in notes)
     Path(os.environ.get("SUMMARY_FILE", ROOT / "run-summary.md")).write_text(
