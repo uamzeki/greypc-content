@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-16",
+  "updated": "2026-09-26",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -367,6 +367,26 @@
       "id": "2026-09-01-best-esports-and-lan-cafe-pc-setup-in-bahrain-2026",
       "url": "2026-09-01-best-esports-and-lan-cafe-pc-setup-in-bahrain-2026.json",
       "publish_date": "2026-09-01"
+    },
+    {
+      "id": "2026-09-27-rtx-5090-vs-rtx-5080-is-the-flagship-worth-it-in-2026",
+      "url": "2026-09-27-rtx-5090-vs-rtx-5080-is-the-flagship-worth-it-in-2026.json",
+      "publish_date": "2026-09-27"
+    },
+    {
+      "id": "2026-09-28-best-1440p-gaming-monitor-in-bahrain-2026-buyer-s-guide",
+      "url": "2026-09-28-best-1440p-gaming-monitor-in-bahrain-2026-buyer-s-guide.json",
+      "publish_date": "2026-09-28"
+    },
+    {
+      "id": "2026-09-30-best-gaming-pc-build-in-dubai-2026-parts-list-and-prices",
+      "url": "2026-09-30-best-gaming-pc-build-in-dubai-2026-parts-list-and-prices.json",
+      "publish_date": "2026-09-30"
+    },
+    {
+      "id": "2026-10-01-ryzen-9-9950x3d-vs-9800x3d-which-one-for-gaming-in-2026",
+      "url": "2026-10-01-ryzen-9-9950x3d-vs-9800x3d-which-one-for-gaming-in-2026.json",
+      "publish_date": "2026-10-01"
     }
   ]
 }
