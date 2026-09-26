@@ -16,7 +16,9 @@ import os
 import re
 import subprocess
 import sys
+import html as htmlmod
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -24,6 +26,10 @@ ROOT = Path(__file__).resolve().parent.parent
 SITEMAP = "https://greypc.net/post-sitemap.xml"
 TARGET_QUEUE = 7
 MAX_PER_RUN = 6
+# Extra calendar entries a run may try when some fail, so one stubborn topic
+# does not leave the queue short (2026-09-26: 2 of 6 failed, queue ended at 4).
+# Small on purpose - it must not turn a broken run into a grind.
+EXTRA_ATTEMPTS = 2
 MAX_INTERNAL_LINKS = 8
 # Days of content left before the site has nothing to publish: articles queued
 # but not yet live, plus calendar entries not yet written. From 2026-09-02 to
@@ -70,6 +76,10 @@ FATAL_SIGNS = (
 
 class Fatal(RuntimeError):
     """Generation is blocked for the whole run, not just this article."""
+
+
+class BadReply(RuntimeError):
+    """The CLI answered, but not with a usable JSON object."""
 
 
 notes = []
@@ -136,6 +146,120 @@ def fetch_sitemap():
             if attempt < 3:
                 time.sleep(5 * attempt)
     raise last
+
+
+# --------------------------------------------------------------------------
+# live store prices
+# --------------------------------------------------------------------------
+# Price and buy-intent pages convert ~13x better than anything else on the
+# blog (INSTRUCTIONS.md section 0), and a buyer searching "X price in Bahrain"
+# wants a number. The Store API needs a login, so this reads the public
+# product search page, which the runner can already reach.
+
+PRICE_STOP = {
+    "price", "prices", "in", "bahrain", "best", "2026", "for", "the", "and",
+    "buying", "guide", "how", "to", "a", "of", "which", "is", "what", "build",
+    "builds", "setup", "cost", "bhd", "gulf", "gcc", "buy", "cheap",
+}
+MAX_PRICES = 8
+
+
+def price_queries(focus_keyword):
+    """Store searches for a focus keyword: [(query, max_price_or_None)]."""
+    kw = focus_keyword.lower()
+    budget = re.search(r"under (\d+) bhd", kw)
+    if budget:
+        return [("gaming pc", float(budget.group(1)))]
+    out = []
+    for part in re.split(r"\s+vs\.?\s+", kw):
+        toks = [t for t in re.findall(r"[a-z0-9]+", part) if t not in PRICE_STOP]
+        if toks:
+            out.append((" ".join(toks), None))
+    return out
+
+
+def _num(fragment):
+    # Unescape first: the BHD symbol is served as hex entities (&#x62f;...),
+    # whose digits would otherwise be read as the price.
+    text = htmlmod.unescape(re.sub(r"<[^>]+>", " ", fragment)).replace("\xa0", " ")
+    text = re.sub(r"[^\d.,\s]", " ", text)
+    m = re.search(r"(\d[\d,]*(?:\.\d+)?)", text)
+    return float(m.group(1).replace(",", "")) if m else None
+
+
+def search_store(query):
+    """Products from greypc.net's public search page: dicts with name, price,
+    url, in_stock. Returns [] on any failure - prices are a bonus, never a
+    reason to fail the run."""
+    url = "https://greypc.net/?" + urllib.parse.urlencode(
+        {"s": query, "post_type": "product"}
+    )
+    page = None
+    for attempt in (1, 2, 3):
+        try:
+            req = urllib.request.Request(
+                url, headers={"User-Agent": "greypc-autopublish"}
+            )
+            with urllib.request.urlopen(req, timeout=30) as r:
+                page = r.read().decode("utf-8", "replace")
+            break
+        except Exception as ex:  # noqa: BLE001 - the host rate-limits bursts
+            if attempt == 3:
+                log(f"price lookup failed for '{query}': {ex}")
+                return []
+            time.sleep(4 * attempt)
+    items = []
+    for block in re.split(r"<li\b", page)[1:]:
+        head = block[:600]
+        if "type-product" not in head:
+            continue
+        block = block.split("</li>")[0]
+        link = re.search(r'href="(https://greypc\.net/product/[^"#?]+)"', block)
+        name = re.search(
+            r'woocommerce-loop-product__title[^>]*>(.*?)</', block, re.S
+        ) or re.search(r'<h[23][^>]*>(.*?)</h[23]>', block, re.S)
+        price_html = re.search(r'class="price"[^>]*>(.*?)</span>\s*(?:</a>|<a|</div>|$)', block, re.S)
+        price_html = price_html.group(1) if price_html else block
+        sale = re.search(r"<ins[^>]*>(.*?)</ins>", price_html, re.S)
+        amounts = re.findall(r"<bdi>(.*?)</bdi>", sale.group(1) if sale else price_html, re.S)
+        price = _num(amounts[0]) if amounts else None
+        if not (link and name and price):
+            continue
+        items.append({
+            "name": htmlmod.unescape(re.sub(r"<[^>]+>", "", name.group(1))).strip(),
+            "price": price,
+            "url": link.group(1) if link.group(1).endswith("/") else link.group(1) + "/",
+            "in_stock": "outofstock" not in head,
+        })
+    return items
+
+
+BUY_INTENT = re.compile(r"\b(price|bhd|best|vs|build|buy|cost|under|cheap|deal)\b")
+GENERIC = {"gaming", "pc", "pcs", "computer", "desktop"}
+
+
+def live_prices(focus_keyword):
+    """Relevant in-stock products first, deduplicated, capped at MAX_PRICES.
+    Only for buying-intent keywords - a how-to does not need a price list."""
+    if not BUY_INTENT.search(focus_keyword.lower()):
+        return []
+    seen, found = set(), []
+    for i, (query, cap) in enumerate(price_queries(focus_keyword)):
+        if i:
+            time.sleep(2)
+        need = [t for t in query.split() if len(t) >= 3 and t not in GENERIC]
+        for it in search_store(query):
+            name = re.sub(r"[\s-]", "", it["name"].lower())
+            if need and not any(t.replace("-", "") in name for t in need):
+                continue
+            if cap and not re.search(r"\bpc\b|build", it["name"].lower()):
+                continue  # a budget-build article wants whole PCs, not parts
+            if it["url"] in seen or (cap and it["price"] > cap):
+                continue
+            seen.add(it["url"])
+            found.append(it)
+    found.sort(key=lambda it: (not it["in_stock"], it["price"]))
+    return found[:MAX_PRICES]
 
 
 def live_keys():
@@ -227,8 +351,9 @@ def cap_internal_links(html, limit=MAX_INTERNAL_LINKS):
 # validation - mirrors METHODOLOGY.md section 3 and the publishing checklist
 # --------------------------------------------------------------------------
 
-def validate(art, used_keywords):
+def validate(art, used_keywords, prices=()):
     e = []
+    product_urls = {p["url"] for p in prices}
     kw = art.get("focus_keyword", "").lower()
     html = art.get("content_html", "")
 
@@ -256,10 +381,25 @@ def validate(art, used_keywords):
     if not 5 <= len(urls) <= 8:
         e.append(f"{len(urls)} internal links, must be 5-8")
     for u in urls:
-        if u not in APPROVED_LINKS:
+        if u not in APPROVED_LINKS and u not in product_urls:
             e.append(f"link not on the approved list: {u}")
     if not any("contact-us" in u for u in urls):
         e.append("must close with a call to action linking to /contact-us/")
+
+    # Every BHD figure must be a live price or a budget named in the title.
+    allowed = {round(p["price"], 2) for p in prices}
+    for n in re.findall(r"\d[\d,]*(?:\.\d+)?", art.get("title", "") + " " + kw):
+        allowed.add(round(float(n.replace(",", "")), 2))
+    text = re.sub(r"<[^>]+>", " ", html)
+    for a, b in re.findall(
+        r"(?:BHD|BD|\.د\.ب)\s*(\d[\d,]*(?:\.\d+)?)|(\d[\d,]*(?:\.\d+)?)\s*(?:BHD|BD)\b",
+        text,
+    ):
+        val = round(float((a or b).replace(",", "")), 2)
+        if val not in allowed:
+            e.append(f"price {a or b} BHD is not a live Grey PC price - quote only "
+                     f"the prices supplied, or describe the tier without a number")
+            break
 
     if re.search(r"<h1", html, re.I):
         e.append("content_html must never contain an H1")
@@ -280,7 +420,8 @@ def validate(art, used_keywords):
 # generation
 # --------------------------------------------------------------------------
 
-def generate(client, methodology, entry, article_id, used_keywords, feedback=None):
+def generate(client, methodology, entry, article_id, used_keywords,
+             feedback=None, prices=()):
     approved = "\n".join(APPROVED_LINKS)
     system = (
         methodology
@@ -308,7 +449,16 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
           "- close with a call to action linking to https://greypc.net/contact-us/\n"
           "- HTML entities (&ndash; &rsquo; &mdash;) rather than raw unicode "
           "punctuation\n"
-          "- no invented prices, benchmark figures or product SKUs\n\n"
+          "- no invented benchmark figures or product SKUs, and no BHD amount "
+          "except the live Grey PC prices listed in the request and any budget "
+          "named in the title. Price and budget topics are still written in "
+          "full: where no price is supplied, explain what sets the price in "
+          "Bahrain, the tiers and what to pair it with, link the category page "
+          "where live prices are shown, and invite the reader to message Grey PC "
+          "for today's quote\n\n"
+          "Do not use any tools - everything you need is in this prompt. Do not "
+          "ask questions, apologise or explain your choices: the whole reply is "
+          "the JSON object, starting with { and ending with }.\n\n"
           "If the topic has genuinely gone stale - a dated seasonal hook that has "
           "passed, or hardware that has been superseded - reply instead with "
           '{"stale": true, "reason": "..."} and nothing else.'
@@ -324,6 +474,29 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
         f"Focus keywords already used elsewhere on the site, do not reuse any of "
         f"them: {', '.join(sorted(used_keywords))}"
     )
+    if prices:
+        run_date = os.environ.get("RUN_DATE", "today")
+        user += (
+            f"\n\nLIVE GREY PC PRICES, checked {run_date}. These are the only prices "
+            f"you may state. Quote them exactly in BHD, name the product, and link "
+            f"its product page (product links count toward the 6 internal links; "
+            f"link 2-3 of them). Say once that prices were checked on {run_date} "
+            f"and can change - ask the reader to message Grey PC for today's price "
+            f"and a build quote. Prefer in-stock items; call out-of-stock items "
+            f"'available to order'.\n"
+            + "\n".join(
+                f"- {p['name']} | {p['price']:.3f} BHD | "
+                f"{'in stock' if p['in_stock'] else 'out of stock'} | {p['url']}"
+                for p in prices
+            )
+        )
+    elif BUY_INTENT.search(entry["focus_keyword"].lower()):
+        user += (
+            "\n\nNo live Grey PC prices were found for this topic today. Write "
+            "the article anyway. State no BHD figure other than a budget named "
+            "in the title; send readers to the category page for live prices "
+            "and to Grey PC for a quote."
+        )
     if feedback:
         user += (
             "\n\nYour previous attempt failed automated validation with these "
@@ -349,9 +522,42 @@ def generate(client, methodology, entry, article_id, used_keywords, feedback=Non
         if any(sign in blob for sign in FATAL_SIGNS):
             raise Fatal(msg)
         raise RuntimeError(msg)
-    text = proc.stdout.strip()
-    text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
-    return json.loads(text)
+    return parse_reply(proc.stdout)
+
+
+def parse_reply(text):
+    """Pull the article object out of the CLI's reply.
+
+    2026-09-26: both price-in-Bahrain topics failed twice with 'Expecting
+    value: line 1 column 1 (char 0)' - the reply did not start with '{'
+    (a line of prose before the object, or no object at all), and the old
+    parser only stripped code fences. This accepts a preamble, a fence or
+    trailing text, and when there is truly no object it says what came back
+    instead, so the issue body shows the cause.
+    """
+    text = (text or "").strip()
+    if not text:
+        raise BadReply("the reply was empty")
+    dec = json.JSONDecoder(strict=False)  # tolerate raw newlines in strings
+    fallback = None
+    for m in re.finditer(r"\{", text):
+        try:
+            obj, _ = dec.raw_decode(text, m.start())
+        except ValueError:
+            continue
+        if not isinstance(obj, dict):
+            continue
+        if "content_html" in obj or obj.get("stale"):
+            return obj
+        if fallback is None:
+            fallback = obj
+    if fallback is not None:
+        return fallback  # validate() reports whatever is missing
+    snippet = re.sub(r"\s+", " ", text)
+    raise BadReply(
+        f"no JSON object in the reply ({len(text)} chars). It began: "
+        f"{snippet[:240]!r} ... and ended: {snippet[-120:]!r}"
+    )
 
 
 def make_header(title, article_id):
@@ -407,8 +613,10 @@ def main():
         # Bound the run by attempts, not just successes. Previously the loop
         # only stopped once `need` articles had been written, so a run where
         # generation was failing would grind through every pending entry -
-        # 38 of them on 2026-08-10, two attempts each, all doomed.
-        if len(written) >= need or attempted >= need:
+        # 38 of them on 2026-08-10, two attempts each, all doomed. A couple of
+        # extra entries are allowed so a single stubborn topic does not leave
+        # the queue short.
+        if len(written) >= need or attempted >= need + EXTRA_ATTEMPTS:
             break
         article_id = f"{entry['date']}-{slugify(entry['title'])}"[:120]
         if (ROOT / "articles" / f"{article_id}.json").exists():
@@ -416,19 +624,32 @@ def main():
             continue
 
         attempted += 1
+        prices = live_prices(entry["focus_keyword"])
+        log(f"{len(prices)} live price(s) for '{entry['focus_keyword']}'")
         art, errors = None, None
         for attempt in (1, 2):
             try:
                 candidate = generate(
                     client, methodology, entry, article_id,
                     used - {entry["focus_keyword"]},
-                    feedback=errors,
+                    feedback=errors, prices=prices,
                 )
             except Fatal as ex:
                 fatal = str(ex)
                 errors = [f"fatal: {ex}"]
                 break
+            except BadReply as ex:
+                log(f"attempt {attempt} for {article_id}: unusable reply - {ex}")
+                errors = [
+                    f"your reply could not be read as JSON ({ex}). Reply with the "
+                    f"JSON article object only - the first character must be {{ "
+                    f"and the last }}. Do not explain, apologise or ask questions. "
+                    f"If a price you want is not in the list supplied, describe "
+                    f"the tier instead of giving a number."
+                ]
+                continue
             except Exception as ex:  # noqa: BLE001
+                log(f"attempt {attempt} for {article_id}: generation error - {ex}")
                 errors = [f"generation error: {ex}"]
                 continue
             if candidate.get("stale"):
@@ -452,7 +673,7 @@ def main():
             if trimmed:
                 log(f"trimmed {trimmed} repeated/surplus internal link(s) "
                     f"from {article_id}")
-            errors = validate(candidate, used - {entry["focus_keyword"]})
+            errors = validate(candidate, used - {entry["focus_keyword"]}, prices)
             if not errors:
                 art = candidate
                 break
