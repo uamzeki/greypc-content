@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-26",
+  "updated": "2026-09-27",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -397,6 +397,16 @@
       "id": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with",
       "url": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with.json",
       "publish_date": "2026-09-29"
+    },
+    {
+      "id": "2026-10-02-photo-editing-pc-build-2026-lightroom-and-photoshop-ready",
+      "url": "2026-10-02-photo-editing-pc-build-2026-lightroom-and-photoshop-ready.json",
+      "publish_date": "2026-10-02"
+    },
+    {
+      "id": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict",
+      "url": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict.json",
+      "publish_date": "2026-10-04"
     }
   ]
 }
