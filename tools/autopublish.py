@@ -31,6 +31,9 @@ MAX_PER_RUN = 6
 # Small on purpose - it must not turn a broken run into a grind.
 EXTRA_ATTEMPTS = 2
 MAX_INTERNAL_LINKS = 8
+ATTEMPTS = 3  # per calendar entry; the 3rd sees the precise fix-list
+# Fail the run for article-level errors only when the queue ends below this.
+QUEUE_ALERT = 5
 # Days of content left before the site has nothing to publish: articles queued
 # but not yet live, plus calendar entries not yet written. From 2026-09-02 to
 # 09-25 the site published nothing while every run reported success, because
@@ -426,15 +429,21 @@ def generate(client, methodology, entry, article_id, used_keywords,
     system = (
         methodology
         + "\n\n---\n\nYou are writing one article for Grey PC, a computer shop in "
-          "Bahrain. Follow the methodology above exactly. Reply with a single JSON "
-          "object and nothing else - no prose, no code fences.\n\n"
-          "Required keys: id, title, slug, seo_title, meta_description, "
-          "focus_keyword, category, tags, excerpt, featured_image_alt, content_html.\n\n"
+          "Bahrain. Follow the methodology above exactly.\n\n"
+          "REPLY FORMAT - exactly two parts and nothing else (no prose, no code "
+          "fences):\n"
+          + REPLY_FORMAT +
+          "\nMETA keys: id, title, slug, seo_title, meta_description, "
+          "focus_keyword, category, tags, excerpt, featured_image_alt. Do NOT put "
+          "content_html in the JSON - the article HTML goes, unescaped, between "
+          "the HTML markers.\n\n"
           "Hard requirements, all of which are checked automatically:\n"
           "- seo_title: 60 chars max, must contain 'Grey PC'\n"
           "- meta_description: between 140 and 160 characters, must contain the "
           "exact focus keyword\n"
-          "- content_html: 1300-1800 words, starts at H2, never an H1\n"
+          "- article HTML: 1300-1800 words - aim for 1500. Drafts keep landing "
+          "short (1200s), so plan ~8 H2 sections of 150-200 words plus the FAQ. "
+          "Starts at H2, never an H1\n"
           "- the exact focus keyword appears in the first paragraph inside <strong> "
           "tags, in at least one H2, and in the closing section\n"
           "- a 'Frequently Asked Questions' H2 with 4-6 H3 questions, each answered "
@@ -458,10 +467,10 @@ def generate(client, methodology, entry, article_id, used_keywords,
           "for today's quote\n\n"
           "Do not use any tools - everything you need is in this prompt. Do not "
           "ask questions, apologise or explain your choices: the whole reply is "
-          "the JSON object, starting with { and ending with }.\n\n"
+          "the two marked parts.\n\n"
           "If the topic has genuinely gone stale - a dated seasonal hook that has "
           "passed, or hardware that has been superseded - reply instead with "
-          '{"stale": true, "reason": "..."} and nothing else.'
+          'only {"stale": true, "reason": "..."} and nothing else.'
     )
     user = (
         f"Write today's article.\n\n"
@@ -525,28 +534,68 @@ def generate(client, methodology, entry, article_id, used_keywords,
     return parse_reply(proc.stdout)
 
 
-def parse_reply(text):
-    """Pull the article object out of the CLI's reply.
+META_START, HTML_START, END = "=====META=====", "=====HTML=====", "=====END====="
+REPLY_FORMAT = (
+    f"{META_START}\n"
+    '{"id": "...", "title": "...", "slug": "...", "seo_title": "...", '
+    '"meta_description": "...", "focus_keyword": "...", "category": "...", '
+    '"tags": ["...", "..."], "excerpt": "...", "featured_image_alt": "..."}\n'
+    f"{HTML_START}\n"
+    "<p>The article HTML, raw - no JSON escaping ...</p>\n"
+    f"{END}\n"
+)
 
-    2026-09-26: both price-in-Bahrain topics failed twice with 'Expecting
-    value: line 1 column 1 (char 0)' - the reply did not start with '{'
-    (a line of prose before the object, or no object at all), and the old
-    parser only stripped code fences. This accepts a preamble, a fence or
-    trailing text, and when there is truly no object it says what came back
-    instead, so the issue body shows the cause.
+# A backslash that does not start a valid JSON escape (a backslash before an
+# apostrophe, hyphen or angle bracket). One of these anywhere makes json reject
+# the whole reply - the likely cause of the 2026-09-27 'no JSON object' failure
+# on a reply that began and ended correctly. The repair drops the backslash.
+BAD_ESCAPE = re.compile(r'\\(["\\/bfnrtu])|\\')
+
+
+def _decode_objects(text):
+    """Yield every JSON object in text, trying a lenient repair when the
+    straight decode fails."""
+    dec = json.JSONDecoder(strict=False)  # tolerate raw newlines in strings
+    for candidate in (text, BAD_ESCAPE.sub(lambda m: m.group(0) if m.group(1) else "", text)):
+        found = False
+        for m in re.finditer(r"\{", candidate):
+            try:
+                obj, _ = dec.raw_decode(candidate, m.start())
+            except ValueError:
+                continue
+            if isinstance(obj, dict):
+                found = True
+                yield obj
+        if found:
+            return
+
+
+def parse_reply(text):
+    """Pull the article out of the CLI's reply.
+
+    Preferred format (since 2026-09-27): a small META JSON object plus the
+    article HTML raw between markers, so 1,500 words of HTML never has to be
+    JSON-escaped - escaping was the recurring failure (#17, #18, #19).
+    Still accepts the old single-JSON reply, with or without preamble/fences.
     """
     text = (text or "").strip()
     if not text:
         raise BadReply("the reply was empty")
-    dec = json.JSONDecoder(strict=False)  # tolerate raw newlines in strings
+
+    if HTML_START in text:
+        head, _, body = text.partition(HTML_START)
+        html = body.split(END)[0].strip()
+        html = re.sub(r"^```(?:html)?\s*|\s*```$", "", html).strip()
+        meta = head.split(META_START)[-1]
+        obj = next((o for o in _decode_objects(meta)), None)
+        if obj is None:
+            raise BadReply(f"the META part is not a JSON object: {meta.strip()[:240]!r}")
+        if html:
+            obj["content_html"] = html
+        return obj
+
     fallback = None
-    for m in re.finditer(r"\{", text):
-        try:
-            obj, _ = dec.raw_decode(text, m.start())
-        except ValueError:
-            continue
-        if not isinstance(obj, dict):
-            continue
+    for obj in _decode_objects(text):
         if "content_html" in obj or obj.get("stale"):
             return obj
         if fallback is None:
@@ -558,6 +607,40 @@ def parse_reply(text):
         f"no JSON object in the reply ({len(text)} chars). It began: "
         f"{snippet[:240]!r} ... and ended: {snippet[-120:]!r}"
     )
+
+
+def fit_meta_description(art):
+    """Trim an over-long meta description at a word boundary, keeping the
+    focus keyword. Drafts routinely land at 161-170 chars and each miss burned
+    a full retry (#19). Never pads a short one - that is left to the retry."""
+    md = (art.get("meta_description") or "").strip()
+    kw = (art.get("focus_keyword") or "").lower()
+    if len(md) <= 160:
+        return False
+    cut = md[:160]
+    for stop in (". ", "; ", ", ", " "):
+        i = cut.rfind(stop)
+        if i >= 140:
+            trimmed = cut[: i + (1 if stop.startswith(".") else 0)].rstrip(" ,;")
+            if not trimmed.endswith("."):
+                trimmed += "."
+            if 140 <= len(trimmed) <= 160 and kw in trimmed.lower():
+                art["meta_description"] = trimmed
+                return True
+    return False
+
+
+def expand_hint(err):
+    """Make a validation error actionable for the retry."""
+    m = re.match(r"word count is (\d+), must be 1300-1800", err)
+    if m:
+        n = int(m.group(1))
+        if n < 1300:
+            return (f"{err}. Add at least {1450 - n} words - expand the existing "
+                    f"H2 sections with concrete detail (what to pair it with, "
+                    f"what to check before buying) rather than padding.")
+        return f"{err}. Cut about {n - 1650} words."
+    return err
 
 
 def make_header(title, article_id):
@@ -627,7 +710,7 @@ def main():
         prices = live_prices(entry["focus_keyword"])
         log(f"{len(prices)} live price(s) for '{entry['focus_keyword']}'")
         art, errors = None, None
-        for attempt in (1, 2):
+        for attempt in range(1, ATTEMPTS + 1):
             try:
                 candidate = generate(
                     client, methodology, entry, article_id,
@@ -641,9 +724,9 @@ def main():
             except BadReply as ex:
                 log(f"attempt {attempt} for {article_id}: unusable reply - {ex}")
                 errors = [
-                    f"your reply could not be read as JSON ({ex}). Reply with the "
-                    f"JSON article object only - the first character must be {{ "
-                    f"and the last }}. Do not explain, apologise or ask questions. "
+                    f"your reply could not be read ({ex}). Reply in the two-part "
+                    f"format only: {META_START}, the META JSON, {HTML_START}, the "
+                    f"raw article HTML, {END}. Do not explain, apologise or ask questions. "
                     f"If a price you want is not in the list supplied, describe "
                     f"the tier instead of giving a number."
                 ]
@@ -667,6 +750,8 @@ def main():
                 "https://raw.githubusercontent.com/uamzeki/greypc-content/main/"
                 f"images/{article_id}.png"
             )
+            if fit_meta_description(candidate):
+                log(f"trimmed the meta description of {article_id} to 160 chars")
             candidate["content_html"], trimmed = cap_internal_links(
                 candidate.get("content_html", "")
             )
@@ -678,6 +763,7 @@ def main():
                 art = candidate
                 break
             log(f"attempt {attempt} for {article_id} failed validation: {errors}")
+            errors = [expand_hint(e) for e in errors]
 
         if fatal:
             log(f"ABORTING the run early - generation is blocked: {fatal}")
@@ -686,7 +772,7 @@ def main():
             continue
         if art is None:
             failures.append((article_id, errors))
-            log(f"FAILED {article_id} after 2 attempts: {errors}")
+            log(f"FAILED {article_id} after {ATTEMPTS} attempts: {errors}")
             continue
 
         write_json(f"articles/{article_id}.json", art)
@@ -727,8 +813,16 @@ def main():
             "article rather than burning the whole calendar. " + fatal)
         return 1
     if failures:
-        log(f"FAILURE: {len(failures)} article(s) could not be written to spec.")
-        return 1
+        # One stubborn topic is not an outage. Only fail (and open an issue)
+        # when the queue is actually left short - every run from #52 to #54
+        # was marked failed while it had filled the queue to 6-7.
+        if queued < QUEUE_ALERT or not written:
+            log(f"FAILURE: {len(failures)} article(s) could not be written to "
+                f"spec and the queue is only {queued} deep.")
+            return 1
+        log(f"WARNING: {len(failures)} article(s) could not be written to spec "
+            f"and stay pending for the next run. Queue is {queued} deep, so "
+            f"the run is not failed for it.")
     if not sitemap_ok:
         log("NOTE: queue depth was estimated this run because the sitemap was "
             "unreachable after 3 tries. Not failing the run for that alone - "
