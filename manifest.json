@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-28",
+  "updated": "2026-09-29",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -412,6 +412,11 @@
       "id": "2026-10-03-best-budget-cpu-cooler-in-bahrain-2026-picks",
       "url": "2026-10-03-best-budget-cpu-cooler-in-bahrain-2026-picks.json",
       "publish_date": "2026-10-03"
+    },
+    {
+      "id": "2026-10-05-gaming-pc-build-guide-for-saudi-arabia-2026-prices",
+      "url": "2026-10-05-gaming-pc-build-guide-for-saudi-arabia-2026-prices.json",
+      "publish_date": "2026-10-05"
     }
   ]
 }
