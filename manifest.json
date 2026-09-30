@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-29",
+  "updated": "2026-09-30",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -417,6 +417,11 @@
       "id": "2026-10-05-gaming-pc-build-guide-for-saudi-arabia-2026-prices",
       "url": "2026-10-05-gaming-pc-build-guide-for-saudi-arabia-2026-prices.json",
       "publish_date": "2026-10-05"
+    },
+    {
+      "id": "2026-10-06-how-to-update-am5-bios-safely-in-2026",
+      "url": "2026-10-06-how-to-update-am5-bios-safely-in-2026.json",
+      "publish_date": "2026-10-06"
     }
   ]
 }
