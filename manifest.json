@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-09-30",
+  "updated": "2026-10-02",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -422,6 +422,16 @@
       "id": "2026-10-06-how-to-update-am5-bios-safely-in-2026",
       "url": "2026-10-06-how-to-update-am5-bios-safely-in-2026.json",
       "publish_date": "2026-10-06"
+    },
+    {
+      "id": "2026-10-07-rtx-5070-ti-price-in-bahrain-2026-is-it-the-sweet-spot",
+      "url": "2026-10-07-rtx-5070-ti-price-in-bahrain-2026-is-it-the-sweet-spot.json",
+      "publish_date": "2026-10-07"
+    },
+    {
+      "id": "2026-10-08-nvme-vs-sata-ssd-does-it-actually-matter-for-gaming",
+      "url": "2026-10-08-nvme-vs-sata-ssd-does-it-actually-matter-for-gaming.json",
+      "publish_date": "2026-10-08"
     }
   ]
 }
