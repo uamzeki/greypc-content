@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-02",
+  "updated": "2026-10-03",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -432,6 +432,11 @@
       "id": "2026-10-08-nvme-vs-sata-ssd-does-it-actually-matter-for-gaming",
       "url": "2026-10-08-nvme-vs-sata-ssd-does-it-actually-matter-for-gaming.json",
       "publish_date": "2026-10-08"
+    },
+    {
+      "id": "2026-10-09-amd-adrenalin-best-settings-for-gaming-in-2026",
+      "url": "2026-10-09-amd-adrenalin-best-settings-for-gaming-in-2026.json",
+      "publish_date": "2026-10-09"
     }
   ]
 }
