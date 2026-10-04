@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-03",
+  "updated": "2026-10-04",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -437,6 +437,11 @@
       "id": "2026-10-09-amd-adrenalin-best-settings-for-gaming-in-2026",
       "url": "2026-10-09-amd-adrenalin-best-settings-for-gaming-in-2026.json",
       "publish_date": "2026-10-09"
+    },
+    {
+      "id": "2026-10-10-best-gaming-speakers-in-bahrain-2026-guide",
+      "url": "2026-10-10-best-gaming-speakers-in-bahrain-2026-guide.json",
+      "publish_date": "2026-10-10"
     }
   ]
 }
