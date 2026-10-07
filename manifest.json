@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -452,6 +452,11 @@
       "id": "2026-10-12-ryzen-7-9800x3d-price-in-bahrain-2026-and-the-best-builds-around-it",
       "url": "2026-10-12-ryzen-7-9800x3d-price-in-bahrain-2026-and-the-best-builds-around-it.json",
       "publish_date": "2026-10-12"
+    },
+    {
+      "id": "2026-10-13-how-to-fix-a-pc-that-overheats-in-gulf-summer-heat",
+      "url": "2026-10-13-how-to-fix-a-pc-that-overheats-in-gulf-summer-heat.json",
+      "publish_date": "2026-10-13"
     }
   ]
 }
