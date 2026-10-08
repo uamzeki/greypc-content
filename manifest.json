@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -457,6 +457,11 @@
       "id": "2026-10-13-how-to-fix-a-pc-that-overheats-in-gulf-summer-heat",
       "url": "2026-10-13-how-to-fix-a-pc-that-overheats-in-gulf-summer-heat.json",
       "publish_date": "2026-10-13"
+    },
+    {
+      "id": "2026-10-14-best-gpu-for-1440p-gaming-in-2026",
+      "url": "2026-10-14-best-gpu-for-1440p-gaming-in-2026.json",
+      "publish_date": "2026-10-14"
     }
   ]
 }
