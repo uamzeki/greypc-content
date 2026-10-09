@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -462,6 +462,11 @@
       "id": "2026-10-14-best-gpu-for-1440p-gaming-in-2026",
       "url": "2026-10-14-best-gpu-for-1440p-gaming-in-2026.json",
       "publish_date": "2026-10-14"
+    },
+    {
+      "id": "2026-10-15-rtx-5060-ti-price-in-bahrain-2026-budget-1440p-buying-guide",
+      "url": "2026-10-15-rtx-5060-ti-price-in-bahrain-2026-budget-1440p-buying-guide.json",
+      "publish_date": "2026-10-15"
     }
   ]
 }
