@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-10",
+  "updated": "2026-10-11",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -472,6 +472,11 @@
       "id": "2026-10-16-workstation-pc-build-for-qatar-businesses-2026",
       "url": "2026-10-16-workstation-pc-build-for-qatar-businesses-2026.json",
       "publish_date": "2026-10-16"
+    },
+    {
+      "id": "2026-10-17-best-external-ssd-in-bahrain-for-creators-2026",
+      "url": "2026-10-17-best-external-ssd-in-bahrain-for-creators-2026.json",
+      "publish_date": "2026-10-17"
     }
   ]
 }
