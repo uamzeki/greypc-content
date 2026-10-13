@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-11",
+  "updated": "2026-10-13",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -477,6 +477,16 @@
       "id": "2026-10-17-best-external-ssd-in-bahrain-for-creators-2026",
       "url": "2026-10-17-best-external-ssd-in-bahrain-for-creators-2026.json",
       "publish_date": "2026-10-17"
+    },
+    {
+      "id": "2026-10-18-custom-workstation-pc-price-in-bahrain-2026",
+      "url": "2026-10-18-custom-workstation-pc-price-in-bahrain-2026.json",
+      "publish_date": "2026-10-18"
+    },
+    {
+      "id": "2026-10-19-rtx-5070-ti-vs-rx-9070-xt-which-to-buy-in-2026",
+      "url": "2026-10-19-rtx-5070-ti-vs-rx-9070-xt-which-to-buy-in-2026.json",
+      "publish_date": "2026-10-19"
     }
   ]
 }
