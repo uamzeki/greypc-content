@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -492,6 +492,11 @@
       "id": "2026-10-20-best-streaming-microphone-in-bahrain-2026-picks",
       "url": "2026-10-20-best-streaming-microphone-in-bahrain-2026-picks.json",
       "publish_date": "2026-10-20"
+    },
+    {
+      "id": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026",
+      "url": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026.json",
+      "publish_date": "2026-10-22"
     }
   ]
 }
