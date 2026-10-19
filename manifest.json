@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -512,6 +512,11 @@
       "id": "2026-10-24-ryzen-9-9950x3d-price-in-bahrain-2026-who-should-buy-it",
       "url": "2026-10-24-ryzen-9-9950x3d-price-in-bahrain-2026-who-should-buy-it.json",
       "publish_date": "2026-10-24"
+    },
+    {
+      "id": "2026-10-25-best-pc-build-for-valorant-360-fps-in-2026",
+      "url": "2026-10-25-best-pc-build-for-valorant-360-fps-in-2026.json",
+      "publish_date": "2026-10-25"
     }
   ]
 }
