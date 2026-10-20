@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -517,6 +517,11 @@
       "id": "2026-10-25-best-pc-build-for-valorant-360-fps-in-2026",
       "url": "2026-10-25-best-pc-build-for-valorant-360-fps-in-2026.json",
       "publish_date": "2026-10-25"
+    },
+    {
+      "id": "2026-10-26-best-pc-build-for-cs2-high-fps-in-2026",
+      "url": "2026-10-26-best-pc-build-for-cs2-high-fps-in-2026.json",
+      "publish_date": "2026-10-26"
     }
   ]
 }
