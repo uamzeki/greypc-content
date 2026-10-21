@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -522,6 +522,11 @@
       "id": "2026-10-26-best-pc-build-for-cs2-high-fps-in-2026",
       "url": "2026-10-26-best-pc-build-for-cs2-high-fps-in-2026.json",
       "publish_date": "2026-10-26"
+    },
+    {
+      "id": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices",
+      "url": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices.json",
+      "publish_date": "2026-10-28"
     }
   ]
 }
