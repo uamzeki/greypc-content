@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-22",
+  "updated": "2026-10-24",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -532,6 +532,16 @@
       "id": "2026-10-27-nvme-ssd-price-in-bahrain-2026-1tb-2tb-and-4tb-buying-guide",
       "url": "2026-10-27-nvme-ssd-price-in-bahrain-2026-1tb-2tb-and-4tb-buying-guide.json",
       "publish_date": "2026-10-27"
+    },
+    {
+      "id": "2026-10-29-am5-motherboard-price-in-bahrain-2026-b850-vs-x870-buying-guide",
+      "url": "2026-10-29-am5-motherboard-price-in-bahrain-2026-b850-vs-x870-buying-guide.json",
+      "publish_date": "2026-10-29"
+    },
+    {
+      "id": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with",
+      "url": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with.json",
+      "publish_date": "2026-11-01"
     }
   ]
 }
