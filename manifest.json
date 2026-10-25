@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -542,6 +542,11 @@
       "id": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with",
       "url": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with.json",
       "publish_date": "2026-11-01"
+    },
+    {
+      "id": "2026-10-30-aio-cooler-price-in-bahrain-2026-which-size-to-buy",
+      "url": "2026-10-30-aio-cooler-price-in-bahrain-2026-which-size-to-buy.json",
+      "publish_date": "2026-10-30"
     }
   ]
 }
