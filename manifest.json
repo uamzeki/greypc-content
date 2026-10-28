@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-27",
+  "updated": "2026-10-28",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -557,6 +557,11 @@
       "id": "2026-11-02-rtx-5060-ti-vs-rx-9060-xt-best-budget-gpu-for-1080p-and-1440p-in-2026",
       "url": "2026-11-02-rtx-5060-ti-vs-rx-9060-xt-best-budget-gpu-for-1080p-and-1440p-in-2026.json",
       "publish_date": "2026-11-02"
+    },
+    {
+      "id": "2026-11-03-best-gaming-pc-under-1000-bhd-in-bahrain-2026-build",
+      "url": "2026-11-03-best-gaming-pc-under-1000-bhd-in-bahrain-2026-build.json",
+      "publish_date": "2026-11-03"
     }
   ]
 }
