@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -572,6 +572,11 @@
       "id": "2026-11-05-rx-9060-xt-price-in-bahrain-2026-best-budget-1440p-gpu",
       "url": "2026-11-05-rx-9060-xt-price-in-bahrain-2026-best-budget-1440p-gpu.json",
       "publish_date": "2026-11-05"
+    },
+    {
+      "id": "2026-11-06-core-ultra-9-285k-vs-ryzen-9-9950x-which-to-buy-in-2026",
+      "url": "2026-11-06-core-ultra-9-285k-vs-ryzen-9-9950x-which-to-buy-in-2026.json",
+      "publish_date": "2026-11-06"
     }
   ]
 }
