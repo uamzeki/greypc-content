@@ -5,7 +5,7 @@ The goal is money: leads and sales for Grey PC. Traffic only counts when it turn
 Where this file conflicts with METHODOLOGY.md, this file wins.
 
 Sources: Search Console and GA4 via Site Kit (wp-admin), WooCommerce orders, 2026-06-20 to
-2026-09-24. Last refreshed: 2026-09-25. The monthly review (section 7) refreshes it.
+2026-09-24. Last refreshed: 2026-11-01 (monthly review of the August cohort). The monthly review (section 7) refreshes it.
 
 ---
 
@@ -23,6 +23,16 @@ Sources: Search Console and GA4 via Site Kit (wp-admin), WooCommerce orders, 202
   "4K video editing PC build guide for Bahrain professionals".
 - Big global pages bring reach, not buyers: the emulation build had 1,039 sessions and 0 leads;
   RTX 5080 vs RX 9070 XT had 805 sessions and 2.
+
+- **November review (August cohort, 29 posts, 90 days to 31 Oct):** 6 of the top 10 earned leads.
+  Local pages convert on tiny traffic again: "Best 4K monitor in Bahrain" (16 clicks, 3 leads),
+  "Air cooler vs AIO for Bahrain" (2 clicks, 2 leads), "Best gaming PC under 600 BHD" (8 clicks,
+  1 lead). "RTX 5080 vs RX 9070 XT" won on both counts (423 clicks, 3 leads, 2 add-to-carts).
+- **A Bahrain tag does not rescue a generic topic.** Gaming headset, gaming mouse, home office
+  PC, student build, high-end build and "1440p gaming PC build for Bahrain" got 0-5 clicks and
+  no leads, and were retired. Local pages that win carry a BHD budget, a price or a named product.
+- **Heat sells.** Air cooler vs AIO for Bahrain (2 leads) and case airflow for hot climates
+  (1 add-to-cart) - cooling for Gulf heat is a proven local lead angle.
 
 **So: rank everything by leads first, clicks second.** The click-based analysis below still
 explains how pages get found; section 0 decides what is worth writing.
@@ -109,6 +119,12 @@ explains how pages get found; section 0 decides what is worth writing.
    (NVIDIA Control Panel -> AMD Adrenalin; best AIO for 9800X3D -> best AIO for 9950X3D).
    Pull the post list from https://greypc.net/post-sitemap.xml.
 6. **Every month, include 3-5 siblings of the current top 10.**
+7. **Local pages need a price, a BHD budget or a named model.** "Gaming PC under 600 BHD" and
+   "best 4K monitor in Bahrain" convert; "1440p gaming PC build for Bahrain" and generic
+   accessory roundups (headset, mouse, chair) got nothing. Skip accessory topics unless they
+   name a specific model.
+8. **Include 1-2 heat/cooling topics a month** that name a product (AIO vs air for a named CPU,
+   airflow cases) - proven lead earners in the Gulf climate.
 
 ## 5. Rules for writing
 
@@ -150,6 +166,9 @@ June's posts), because new pages take 2-3 months to rank - "RTX 5080 vs RX 9070 
    trash), remove its entry from manifest.json so the auto-publisher cannot re-sync it, and set
    its calendar.json status to "retired". The article JSON stays in the repo, so any post can be
    restored.
+**Data note:** Site Kit GA4 `landingPage` values have no trailing slash while post URLs do -
+strip trailing slashes before matching, or every post scores 0 leads.
+
 4. **Apply the lessons to the next batch**: the planning step reads this file, so the next
    calendar extension uses the updated rules. List in the report what was kept, what was
    retired, and what changed in this file.
