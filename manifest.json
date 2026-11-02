@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -532,6 +532,11 @@
       "id": "2026-11-07-best-gaming-pc-under-2000-bhd-in-bahrain-2026-build",
       "url": "2026-11-07-best-gaming-pc-under-2000-bhd-in-bahrain-2026-build.json",
       "publish_date": "2026-11-07"
+    },
+    {
+      "id": "2026-11-08-apex-legends-240-fps-pc-build-2026-parts-list",
+      "url": "2026-11-08-apex-legends-240-fps-pc-build-2026-parts-list.json",
+      "publish_date": "2026-11-08"
     }
   ]
 }
