@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -537,6 +537,11 @@
       "id": "2026-11-08-apex-legends-240-fps-pc-build-2026-parts-list",
       "url": "2026-11-08-apex-legends-240-fps-pc-build-2026-parts-list.json",
       "publish_date": "2026-11-08"
+    },
+    {
+      "id": "2026-11-09-ai-workstation-price-in-bahrain-2026-local-llm-and-training-builds",
+      "url": "2026-11-09-ai-workstation-price-in-bahrain-2026-local-llm-and-training-builds.json",
+      "publish_date": "2026-11-09"
     }
   ]
 }
