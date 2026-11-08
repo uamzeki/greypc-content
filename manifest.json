@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-07",
+  "updated": "2026-11-08",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -562,6 +562,11 @@
       "id": "2026-11-13-best-gaming-pc-under-1500-bhd-in-bahrain-2026-build",
       "url": "2026-11-13-best-gaming-pc-under-1500-bhd-in-bahrain-2026-build.json",
       "publish_date": "2026-11-13"
+    },
+    {
+      "id": "2026-11-14-rtx-5080-vs-rtx-4090-which-is-better-in-2026",
+      "url": "2026-11-14-rtx-5080-vs-rtx-4090-which-is-better-in-2026.json",
+      "publish_date": "2026-11-14"
     }
   ]
 }
