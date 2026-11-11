@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -572,6 +572,21 @@
       "id": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide",
       "url": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide.json",
       "publish_date": "2026-11-16"
+    },
+    {
+      "id": "2026-11-15-power-supply-price-in-bahrain-2026-which-psu-for-your-gpu",
+      "url": "2026-11-15-power-supply-price-in-bahrain-2026-which-psu-for-your-gpu.json",
+      "publish_date": "2026-11-15"
+    },
+    {
+      "id": "2026-11-17-solidworks-workstation-price-in-bahrain-2026-builds-by-budget",
+      "url": "2026-11-17-solidworks-workstation-price-in-bahrain-2026-builds-by-budget.json",
+      "publish_date": "2026-11-17"
+    },
+    {
+      "id": "2026-11-18-ryzen-7-9700x-vs-9800x3d-is-the-x3d-worth-it-for-gaming-in-2026",
+      "url": "2026-11-18-ryzen-7-9700x-vs-9800x3d-is-the-x3d-worth-it-for-gaming-in-2026.json",
+      "publish_date": "2026-11-18"
     }
   ]
 }
