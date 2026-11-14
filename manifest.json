@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-11",
+  "updated": "2026-11-14",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -587,6 +587,21 @@
       "id": "2026-11-18-ryzen-7-9700x-vs-9800x3d-is-the-x3d-worth-it-for-gaming-in-2026",
       "url": "2026-11-18-ryzen-7-9700x-vs-9800x3d-is-the-x3d-worth-it-for-gaming-in-2026.json",
       "publish_date": "2026-11-18"
+    },
+    {
+      "id": "2026-11-19-rtx-5080-gaming-pc-price-in-bahrain-2026-full-build-costs",
+      "url": "2026-11-19-rtx-5080-gaming-pc-price-in-bahrain-2026-full-build-costs.json",
+      "publish_date": "2026-11-19"
+    },
+    {
+      "id": "2026-11-20-marvel-rivals-pc-build-for-high-fps-2026-parts-list",
+      "url": "2026-11-20-marvel-rivals-pc-build-for-high-fps-2026-parts-list.json",
+      "publish_date": "2026-11-20"
+    },
+    {
+      "id": "2026-11-21-rtx-5060-price-in-bahrain-2026-is-it-enough-for-1080p",
+      "url": "2026-11-21-rtx-5060-price-in-bahrain-2026-is-it-enough-for-1080p.json",
+      "publish_date": "2026-11-21"
     }
   ]
 }
