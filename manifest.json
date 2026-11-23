@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-14",
+  "updated": "2026-11-23",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -602,6 +602,21 @@
       "id": "2026-11-21-rtx-5060-price-in-bahrain-2026-is-it-enough-for-1080p",
       "url": "2026-11-21-rtx-5060-price-in-bahrain-2026-is-it-enough-for-1080p.json",
       "publish_date": "2026-11-21"
+    },
+    {
+      "id": "2026-11-22-rtx-5060-ti-vs-rtx-5070-price-in-bahrain-and-which-to-buy-2026",
+      "url": "2026-11-22-rtx-5060-ti-vs-rtx-5070-price-in-bahrain-and-which-to-buy-2026.json",
+      "publish_date": "2026-11-22"
+    },
+    {
+      "id": "2026-11-23-how-to-overclock-the-rtx-5070-ti-with-msi-afterburner-2026",
+      "url": "2026-11-23-how-to-overclock-the-rtx-5070-ti-with-msi-afterburner-2026.json",
+      "publish_date": "2026-11-23"
+    },
+    {
+      "id": "2026-11-24-mini-itx-gaming-pc-price-in-bahrain-2026-small-builds-by-budget",
+      "url": "2026-11-24-mini-itx-gaming-pc-price-in-bahrain-2026-small-builds-by-budget.json",
+      "publish_date": "2026-11-24"
     }
   ]
 }
