@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -617,6 +617,31 @@
       "id": "2026-11-24-mini-itx-gaming-pc-price-in-bahrain-2026-small-builds-by-budget",
       "url": "2026-11-24-mini-itx-gaming-pc-price-in-bahrain-2026-small-builds-by-budget.json",
       "publish_date": "2026-11-24"
+    },
+    {
+      "id": "2026-11-25-rx-9070-vs-rx-9070-xt-is-the-xt-worth-the-extra-in-2026",
+      "url": "2026-11-25-rx-9070-vs-rx-9070-xt-is-the-xt-worth-the-extra-in-2026.json",
+      "publish_date": "2026-11-25"
+    },
+    {
+      "id": "2026-11-26-white-gaming-pc-build-in-bahrain-2026-parts-and-prices",
+      "url": "2026-11-26-white-gaming-pc-build-in-bahrain-2026-parts-and-prices.json",
+      "publish_date": "2026-11-26"
+    },
+    {
+      "id": "2026-11-27-best-cpu-for-rtx-5080-in-2026-no-bottleneck-pairings",
+      "url": "2026-11-27-best-cpu-for-rtx-5080-in-2026-no-bottleneck-pairings.json",
+      "publish_date": "2026-11-27"
+    },
+    {
+      "id": "2026-11-28-custom-water-cooled-pc-price-in-bahrain-2026-is-it-worth-it-in-the-heat",
+      "url": "2026-11-28-custom-water-cooled-pc-price-in-bahrain-2026-is-it-worth-it-in-the-heat.json",
+      "publish_date": "2026-11-28"
+    },
+    {
+      "id": "2026-11-29-how-to-repaste-a-gpu-lower-temps-step-by-step-2026",
+      "url": "2026-11-29-how-to-repaste-a-gpu-lower-temps-step-by-step-2026.json",
+      "publish_date": "2026-11-29"
     }
   ]
 }
