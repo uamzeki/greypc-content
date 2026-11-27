@@ -1,6 +1,6 @@
 {
   "feed": "Grey PC content feed",
-  "updated": "2026-11-24",
+  "updated": "2026-11-27",
   "base_url": "https://raw.githubusercontent.com/uamzeki/greypc-content/main/articles/",
   "articles": [
     {
@@ -214,14 +214,14 @@
       "publish_date": "2026-08-11"
     },
     {
-      "id": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026",
-      "url": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026.json",
-      "publish_date": "2026-08-13"
-    },
-    {
       "id": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it",
       "url": "2026-08-12-best-thermal-paste-in-2026-and-how-to-apply-it.json",
       "publish_date": "2026-08-12"
+    },
+    {
+      "id": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026",
+      "url": "2026-08-13-how-to-overclock-your-ryzen-cpu-safely-in-2026.json",
+      "publish_date": "2026-08-13"
     },
     {
       "id": "2026-08-14-how-to-cable-manage-your-pc-build-2026-guide",
@@ -259,6 +259,11 @@
       "publish_date": "2026-08-20"
     },
     {
+      "id": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026",
+      "url": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026.json",
+      "publish_date": "2026-08-21"
+    },
+    {
       "id": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed",
       "url": "2026-08-22-how-to-choose-a-gaming-mousepad-size-surface-and-speed.json",
       "publish_date": "2026-08-22"
@@ -269,19 +274,14 @@
       "publish_date": "2026-08-23"
     },
     {
-      "id": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026",
-      "url": "2026-08-21-best-budget-gaming-pc-under-300-bhd-in-bahrain-2026.json",
-      "publish_date": "2026-08-21"
+      "id": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide",
+      "url": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide.json",
+      "publish_date": "2026-08-24"
     },
     {
       "id": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026",
       "url": "2026-08-25-best-pc-build-for-roblox-minecraft-and-family-gaming-2026.json",
       "publish_date": "2026-08-25"
-    },
-    {
-      "id": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide",
-      "url": "2026-08-24-how-to-diagnose-pc-crashes-a-2026-troubleshooting-guide.json",
-      "publish_date": "2026-08-24"
     },
     {
       "id": "2026-08-26-dual-monitor-setup-guide-for-work-and-gaming-in-2026",
@@ -319,6 +319,11 @@
       "publish_date": "2026-09-01"
     },
     {
+      "id": "2026-09-26-best-gaming-pc-under-800-bhd-in-bahrain-2026-build",
+      "url": "2026-09-26-best-gaming-pc-under-800-bhd-in-bahrain-2026-build.json",
+      "publish_date": "2026-09-26"
+    },
+    {
       "id": "2026-09-27-rtx-5090-vs-rtx-5080-is-the-flagship-worth-it-in-2026",
       "url": "2026-09-27-rtx-5090-vs-rtx-5080-is-the-flagship-worth-it-in-2026.json",
       "publish_date": "2026-09-27"
@@ -327,6 +332,11 @@
       "id": "2026-09-28-best-1440p-gaming-monitor-in-bahrain-2026-buyer-s-guide",
       "url": "2026-09-28-best-1440p-gaming-monitor-in-bahrain-2026-buyer-s-guide.json",
       "publish_date": "2026-09-28"
+    },
+    {
+      "id": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with",
+      "url": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with.json",
+      "publish_date": "2026-09-29"
     },
     {
       "id": "2026-09-30-best-gaming-pc-build-in-dubai-2026-parts-list-and-prices",
@@ -339,29 +349,19 @@
       "publish_date": "2026-10-01"
     },
     {
-      "id": "2026-09-26-best-gaming-pc-under-800-bhd-in-bahrain-2026-build",
-      "url": "2026-09-26-best-gaming-pc-under-800-bhd-in-bahrain-2026-build.json",
-      "publish_date": "2026-09-26"
-    },
-    {
-      "id": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with",
-      "url": "2026-09-29-rtx-5080-price-in-bahrain-2026-what-you-will-pay-and-what-to-pair-it-with.json",
-      "publish_date": "2026-09-29"
-    },
-    {
       "id": "2026-10-02-photo-editing-pc-build-2026-lightroom-and-photoshop-ready",
       "url": "2026-10-02-photo-editing-pc-build-2026-lightroom-and-photoshop-ready.json",
       "publish_date": "2026-10-02"
     },
     {
-      "id": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict",
-      "url": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict.json",
-      "publish_date": "2026-10-04"
-    },
-    {
       "id": "2026-10-03-best-budget-cpu-cooler-in-bahrain-2026-picks",
       "url": "2026-10-03-best-budget-cpu-cooler-in-bahrain-2026-picks.json",
       "publish_date": "2026-10-03"
+    },
+    {
+      "id": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict",
+      "url": "2026-10-04-oled-vs-ips-gaming-monitors-the-2026-verdict.json",
+      "publish_date": "2026-10-04"
     },
     {
       "id": "2026-10-05-gaming-pc-build-guide-for-saudi-arabia-2026-prices",
@@ -444,14 +444,14 @@
       "publish_date": "2026-10-20"
     },
     {
-      "id": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026",
-      "url": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026.json",
-      "publish_date": "2026-10-22"
-    },
-    {
       "id": "2026-10-21-gaming-laptop-price-in-bahrain-2026-what-each-budget-gets-you",
       "url": "2026-10-21-gaming-laptop-price-in-bahrain-2026-what-each-budget-gets-you.json",
       "publish_date": "2026-10-21"
+    },
+    {
+      "id": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026",
+      "url": "2026-10-22-lan-cafe-pc-build-for-kuwait-cost-per-seat-in-2026.json",
+      "publish_date": "2026-10-22"
     },
     {
       "id": "2026-10-23-rtx-5070-price-in-bahrain-2026-buying-guide-and-build-pairings",
@@ -474,24 +474,19 @@
       "publish_date": "2026-10-26"
     },
     {
-      "id": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices",
-      "url": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices.json",
-      "publish_date": "2026-10-28"
-    },
-    {
       "id": "2026-10-27-nvme-ssd-price-in-bahrain-2026-1tb-2tb-and-4tb-buying-guide",
       "url": "2026-10-27-nvme-ssd-price-in-bahrain-2026-1tb-2tb-and-4tb-buying-guide.json",
       "publish_date": "2026-10-27"
     },
     {
+      "id": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices",
+      "url": "2026-10-28-nas-build-2026-for-bahrain-homes-and-small-offices.json",
+      "publish_date": "2026-10-28"
+    },
+    {
       "id": "2026-10-29-am5-motherboard-price-in-bahrain-2026-b850-vs-x870-buying-guide",
       "url": "2026-10-29-am5-motherboard-price-in-bahrain-2026-b850-vs-x870-buying-guide.json",
       "publish_date": "2026-10-29"
-    },
-    {
-      "id": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with",
-      "url": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with.json",
-      "publish_date": "2026-11-01"
     },
     {
       "id": "2026-10-30-aio-cooler-price-in-bahrain-2026-which-size-to-buy",
@@ -502,6 +497,11 @@
       "id": "2026-10-31-gaming-monitor-price-in-bahrain-2026-1080p-1440p-and-4k-budgets",
       "url": "2026-10-31-gaming-monitor-price-in-bahrain-2026-1080p-1440p-and-4k-budgets.json",
       "publish_date": "2026-10-31"
+    },
+    {
+      "id": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with",
+      "url": "2026-11-01-rtx-5090-price-in-bahrain-2026-what-you-pay-and-what-to-pair-it-with.json",
+      "publish_date": "2026-11-01"
     },
     {
       "id": "2026-11-02-rtx-5060-ti-vs-rx-9060-xt-best-budget-gpu-for-1080p-and-1440p-in-2026",
@@ -569,14 +569,14 @@
       "publish_date": "2026-11-14"
     },
     {
-      "id": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide",
-      "url": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide.json",
-      "publish_date": "2026-11-16"
-    },
-    {
       "id": "2026-11-15-power-supply-price-in-bahrain-2026-which-psu-for-your-gpu",
       "url": "2026-11-15-power-supply-price-in-bahrain-2026-which-psu-for-your-gpu.json",
       "publish_date": "2026-11-15"
+    },
+    {
+      "id": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide",
+      "url": "2026-11-16-how-to-enable-expo-for-ddr5-ram-on-am5-2026-guide.json",
+      "publish_date": "2026-11-16"
     },
     {
       "id": "2026-11-17-solidworks-workstation-price-in-bahrain-2026-builds-by-budget",
@@ -642,6 +642,21 @@
       "id": "2026-11-29-how-to-repaste-a-gpu-lower-temps-step-by-step-2026",
       "url": "2026-11-29-how-to-repaste-a-gpu-lower-temps-step-by-step-2026.json",
       "publish_date": "2026-11-29"
+    },
+    {
+      "id": "2026-11-30-ryzen-5-9600x-price-in-bahrain-2026-and-the-best-builds-around-it",
+      "url": "2026-11-30-ryzen-5-9600x-price-in-bahrain-2026-and-the-best-builds-around-it.json",
+      "publish_date": "2026-11-30"
+    },
+    {
+      "id": "2026-12-01-gaming-pc-under-700-bhd-in-bahrain-2026-best-build",
+      "url": "2026-12-01-gaming-pc-under-700-bhd-in-bahrain-2026-best-build.json",
+      "publish_date": "2026-12-01"
+    },
+    {
+      "id": "2026-12-02-rtx-5070-ti-vs-rx-9070-which-1440p-gpu-to-buy-in-2026",
+      "url": "2026-12-02-rtx-5070-ti-vs-rx-9070-which-1440p-gpu-to-buy-in-2026.json",
+      "publish_date": "2026-12-02"
     }
   ]
 }
